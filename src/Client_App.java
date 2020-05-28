@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 //test
-
+ 
 public class Client_App {
     public static JFrame frame;
     private JPanel profilePanel;
