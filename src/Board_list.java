@@ -10,7 +10,7 @@ public class Board_list {
 	public static String[][] getBoards(){
 		try {
 			Connection con = getConnection();
-			PreparedStatement statement = con.prepareStatement("SELECT num,title,content,writer,hits,regdate FROM board");
+			PreparedStatement statement = con.prepareStatement("SELECT num,title,writer,hits,regdate FROM board");
 			ResultSet results =statement.executeQuery();
 			ArrayList<String[]> list = new ArrayList<String[]>();
             while(results.next()) {
@@ -18,7 +18,7 @@ public class Board_list {
                 list.add(new String[]{
                         results.getString("num"),
                         results.getString("title"),
-                        results.getString("content"),
+//                        results.getString("content"),
                         results.getString("writer"),
                         results.getString("hits"),
                         results.getString("regdate")
@@ -159,6 +159,39 @@ public class Board_list {
 		}finally {
 			System.out.println("게시글 수정 완료!!");
 		}
+		
+	}
+	
+	public static String getContent(Object id, String titles, Object writer) {
+		try {
+			Connection con =getConnection();
+			PreparedStatement getContent =con.prepareStatement(
+					"SELECT content "
+					+ "FROM board  "
+					+ "WHERE num=? AND writer=?"
+					
+					);
+			getContent.setString(1, (String)id);
+			getContent.setString(2, (String)writer);
+			ResultSet result =getContent.executeQuery();
+			
+			ArrayList<String[]> list = new ArrayList<String[]>();
+			
+			while(result.next()) {
+				list.add(new String[]{ 
+	                    result.getString("content"),
+	 
+	            });				 
+			}
+			return list.toString();
+				
+		}catch(Exception e ) {
+			System.out.println(e.getMessage());
+		}finally {
+			System.out.println("게시글 수정 완료!!");
+		}
+		return null;
+		
 		
 	}
 
