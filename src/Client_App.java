@@ -51,7 +51,7 @@ public class Client_App {
         frame.setBounds(100, 100, 1000, 706);
 		frame.getContentPane().setLayout(null);
 
-		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/background2_1.png").getImage());
+		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/backgroundall.png").getImage());
 
 //		JPanel profilePanel, tablePanel, homePanel;
 
@@ -147,7 +147,7 @@ public class Client_App {
         main.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         homePanel.add(main);
         
-        JButton btnNewButton = new JButton("메신저");
+        RoundedButton btnNewButton = new RoundedButton("메신저");
         btnNewButton.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         btnNewButton.setBounds(46, 100, 170, 50);
         homePanel.add(btnNewButton);
@@ -158,7 +158,7 @@ public class Client_App {
             }
         });
         
-        JButton btnNewButton_1 = new JButton("게시판");
+        RoundedButton btnNewButton_1 = new RoundedButton("게시판");
         btnNewButton_1.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         btnNewButton_1.setBounds(46, 170, 170, 50);
         homePanel.add(btnNewButton_1);
@@ -170,7 +170,8 @@ public class Client_App {
 				
 			}
 		});
-        JButton btnNewButton_2 = new JButton("식단표");
+
+        RoundedButton btnNewButton_2 = new RoundedButton("식단표");
         btnNewButton_2.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         btnNewButton_2.setBounds(46, 240, 170, 50);
         homePanel.add(btnNewButton_2);
@@ -187,9 +188,10 @@ public class Client_App {
 			}
 		});
         
-        JButton btnNewButton_3 = new JButton("채팅서버(관리자용)");
+        RoundedButton btnNewButton_3 = new RoundedButton("채팅서버(관리자용)");
         btnNewButton_3.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         btnNewButton_3.setBounds(46, 310, 170, 50);
+
         homePanel.add(btnNewButton_3);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
@@ -219,7 +221,7 @@ public class Client_App {
         //JScrollPane < 스크롤이가능한 컴포넌트로 추가한다.
         tablePanel.add(new JScrollPane(table));
         // ************************************* create 패널 ******************************************
-        JButton createBtn = new JButton("Create");
+        RoundedButton createBtn = new RoundedButton("Create");
         createBtn.setBounds(500,600,150,40);
         createBtn.addActionListener(new ActionListener() {
 
@@ -255,7 +257,7 @@ public class Client_App {
                 createPanel.add(password);
                 createPanel.add(textPassword);
                 //취소버튼
-                JButton cancelBtn = new JButton("cancel");
+                RoundedButton cancelBtn = new RoundedButton("cancel");
                 cancelBtn.setBounds(200,320,100,35);
 
                 cancelBtn.addActionListener(new ActionListener() {
@@ -268,7 +270,7 @@ public class Client_App {
                 });
 
                 //username 과 password 저장 버튼 생성 
-                JButton saveBtn =new JButton("save");
+                RoundedButton saveBtn = new RoundedButton("save");
                 saveBtn.setBounds(350,320,100,35);
                 saveBtn.addActionListener(new ActionListener() {
 					
@@ -326,7 +328,7 @@ public class Client_App {
         
         
         // ************************************* update 패널 ******************************************
-        JButton updateBtn = new JButton("Update");
+        RoundedButton updateBtn = new RoundedButton("Update");
         updateBtn.setBounds(500,700,150,40);
         updateBtn.addActionListener(new ActionListener() {
 
@@ -405,7 +407,7 @@ public class Client_App {
                 updatePanel.add(textNote);
 
                 //취소버튼
-                JButton cancelBtn = new JButton("Cancel");
+                RoundedButton cancelBtn = new RoundedButton("Cancel");
                 cancelBtn.setBounds(350,520,100,35);
 
                 cancelBtn.addActionListener(new ActionListener() {
@@ -416,7 +418,7 @@ public class Client_App {
                         frame.setBounds(100,100,958,551);
                     }
                 });
-                JButton updateSubmitBtn =new JButton("Update");
+                RoundedButton updateSubmitBtn = new RoundedButton("Update");
                 updateSubmitBtn.setBounds(500,520,100,35);
                 updateSubmitBtn.addActionListener(new ActionListener() {
 
@@ -461,7 +463,7 @@ public class Client_App {
             }
         });
         //*************************************************************************************************
-        JButton deleteBtn = new JButton("Delete");
+        RoundedButton deleteBtn = new RoundedButton("Delete");
         deleteBtn.setBounds(500,400,150,40);
         deleteBtn.addActionListener(new ActionListener() {
             @Override
@@ -583,13 +585,41 @@ public class Client_App {
         //로그인화면 PW label
         //로그인화면 ID textField
        
-        textID.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 18));
-        textID.setBounds(240,170,220,35);
+
+        textID.setFont(new Font("휴먼고딕", Font.PLAIN, 18));
+        textID.setBounds(140,250,220,35);
+        
+      //------------------- ID힌트 -작업중
+        textID.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				if(textID.getText().trim().equals(""))
+					textID.setText("ID");
+				else {
+					
+				}
+						
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				if(textID.getText().trim().equals("ID"))
+					textID.setText("");
+				else {
+					
+				}
+					
+			}
+		});
         
         //로그인화면 PW textField
         JPasswordField textPW = new JPasswordField(10);
-        textPW.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 18));
-        textPW.setBounds(240,220,220,35);
+        textPW.setFont(new Font("굴림", Font.PLAIN, 18));
+        textPW.setBounds(140,300,220,35);
+
         //로그인화면 Login Button
         
 //        JButton logBtn =  new JButton("LogIn");
@@ -598,7 +628,7 @@ public class Client_App {
 //        logBtn.setBounds(500,420,170,45);
         
         RoundedButton logBtn = new RoundedButton("LogIn");
-        logBtn.setBounds(260, 280, 170, 45);
+        logBtn.setBounds(165, 350, 170, 45);
         
         logBtn.addActionListener(new ActionListener() {
         	@Override
@@ -810,17 +840,15 @@ class RoundedButton extends JButton {
 		Graphics2D graphics = (Graphics2D) g; 
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 		
-		if (getModel().isArmed()) { 
-//			graphics.setColor(getBackground().brighter());
-			graphics.setColor(getBackground().darker());
-
+		if (getModel().isArmed()) { //눌렀을때
+			graphics.setColor(getBackground().WHITE);
 		} 
-		else if (getModel().isRollover()) { 
-//			graphics.setColor(getBackground().darker());
-			graphics.setColor(getBackground().brighter());
+		else if (getModel().isRollover()) { //커서 댔을때
+//			graphics.setColor(getBackground().BLUE);
+			graphics.setColor(new Color(80, 188, 223));
 		} 
-		else { 
-			graphics.setColor(getBackground());
+		else { //평상시
+			graphics.setColor(getBackground().WHITE);
 		} 
 		
 		graphics.fillRoundRect(0, 0, width, height, 10, 10); 
@@ -829,6 +857,20 @@ class RoundedButton extends JButton {
 		int textX = (width - stringBounds.width) / 2; 
 		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
 		graphics.setColor(getForeground()); 
+		
+		if(getModel().isArmed()) {
+//			graphics.setColor(getForeground().BLUE);
+			graphics.setColor(new Color(80, 188, 223));
+		}
+		else if(getModel().isRollover()) {
+			graphics.setColor(getForeground().WHITE);
+		}
+		else {
+//			graphics.setColor(getForeground().BLUE);
+			graphics.setColor(new Color(80, 188, 223));
+			graphics.drawRoundRect(0, 0, width-1, height-1, 10, 10);
+		}
+		
 		graphics.setFont(getFont()); 
 		graphics.drawString(getText(), textX, textY); 
 		graphics.dispose(); 
