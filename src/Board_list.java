@@ -163,6 +163,7 @@ public class Board_list {
 	}
 	
 	public static String getContent(Object id, String titles, Object writer) {
+		String content ="";
 		try {
 			Connection con =getConnection();
 			PreparedStatement getContent =con.prepareStatement(
@@ -171,6 +172,7 @@ public class Board_list {
 					+ "WHERE num=? AND writer=?"
 					
 					);
+		
 			getContent.setString(1, (String)id);
 			getContent.setString(2, (String)writer);
 			ResultSet result =getContent.executeQuery();
@@ -178,19 +180,19 @@ public class Board_list {
 			ArrayList<String[]> list = new ArrayList<String[]>();
 			
 			while(result.next()) {
-				list.add(new String[]{ 
-	                    result.getString("content"),
-	 
-	            });				 
+
+				content= result.getString("content");
+			 
 			}
-			return list.toString();
+
+			return content;
 				
 		}catch(Exception e ) {
 			System.out.println(e.getMessage());
 		}finally {
 			System.out.println("게시글 수정 완료!!");
 		}
-		return null;
+		return content;
 		
 		
 	}
