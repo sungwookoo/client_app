@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 //test
-
+ 
 public class Client_App {
     public static JFrame frame;
     private JPanel profilePanel;
@@ -78,11 +78,11 @@ public class Client_App {
         //메인패널 상단 label
         JLabel welcomeMain = new JLabel("JOB TIME");
         welcomeMain.setBounds(360,25,300,25);
-        welcomeMain.setFont(new Font("맑은 고딕",Font.BOLD ,20 ));
+        welcomeMain.setFont(new Font("나눔바른고딕 Light",Font.BOLD ,20 ));
         profilePanel.add(welcomeMain);
 
         JLabel name = new JLabel("Name");
-        name.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         name.setBounds(250,120,85,40);
         JTextField textName = new JTextField(10);
         textName.setBounds(320,120,140,40);
@@ -90,7 +90,7 @@ public class Client_App {
         profilePanel.add(textName);
 
         JLabel phone = new JLabel("Phone");
-        phone.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         phone.setBounds(250,180,85,40);
         JTextField textPhone = new JTextField(10);
         textPhone.setBounds(320,180,140,40);
@@ -98,7 +98,7 @@ public class Client_App {
         profilePanel.add(textPhone);
 
         JLabel age = new JLabel("Age");
-        age.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         age.setBounds(265,240,85,40);
         JTextField textAge = new JTextField(2);
         textAge.setBounds(320,240,140,40);
@@ -106,7 +106,7 @@ public class Client_App {
         profilePanel.add(textAge);
 
         JLabel birthDay = new JLabel("Birthday");
-        birthDay.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        birthDay.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         birthDay.setBounds(235,300,85,40);
         JTextField textBirthDay = new JTextField(8);
         textBirthDay.setBounds(320,300,140,40);
@@ -114,7 +114,7 @@ public class Client_App {
         profilePanel.add(textBirthDay);
 
         JLabel gender = new JLabel("Gender");
-        gender.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         gender.setBounds(235,360,85,40);
         
         JComboBox comboBoxGender = new JComboBox(new String[]{"Male","Female"});
@@ -123,7 +123,7 @@ public class Client_App {
         profilePanel.add(comboBoxGender);
 
         JLabel note = new JLabel("Note");
-        note.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         note.setBounds(250,420,85,40);
         
         JTextArea textNote = new JTextArea();
@@ -144,12 +144,12 @@ public class Client_App {
 		JLabel main = new JLabel("home");
 		main.setVerticalAlignment(SwingConstants.TOP);
         main.setBounds(220,36,167,29);
-        main.setFont(new Font("맑은 고딕",Font.BOLD,20));
+        main.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         homePanel.add(main);
         
         RoundedButton btnNewButton = new RoundedButton("메신저");
-        btnNewButton.setFont(new Font("맑은 고딕",Font.BOLD,15));
-        btnNewButton.setBounds(165, 100, 170, 50);
+        btnNewButton.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+        btnNewButton.setBounds(46, 100, 170, 50);
         homePanel.add(btnNewButton);
         btnNewButton.addActionListener(new ActionListener() {
             @Override
@@ -159,8 +159,8 @@ public class Client_App {
         });
         
         RoundedButton btnNewButton_1 = new RoundedButton("게시판");
-        btnNewButton_1.setFont(new Font("맑은 고딕",Font.BOLD,15));
-        btnNewButton_1.setBounds(165, 170, 170, 50);
+        btnNewButton_1.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+        btnNewButton_1.setBounds(46, 170, 170, 50);
         homePanel.add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
 			
@@ -172,8 +172,8 @@ public class Client_App {
 		});
 
         RoundedButton btnNewButton_2 = new RoundedButton("식단표");
-        btnNewButton_2.setFont(new Font("맑은 고딕",Font.BOLD,15));
-        btnNewButton_2.setBounds(165, 240, 170, 50);
+        btnNewButton_2.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+        btnNewButton_2.setBounds(46, 240, 170, 50);
         homePanel.add(btnNewButton_2);
         btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -189,8 +189,9 @@ public class Client_App {
 		});
         
         RoundedButton btnNewButton_3 = new RoundedButton("채팅서버(관리자용)");
-        btnNewButton_3.setFont(new Font("맑은 고딕",Font.BOLD,15));
-        btnNewButton_3.setBounds(165, 310, 170, 50);
+        btnNewButton_3.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+        btnNewButton_3.setBounds(46, 310, 170, 50);
+
         homePanel.add(btnNewButton_3);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
@@ -212,7 +213,7 @@ public class Client_App {
 //        table.setModel(new DefaultTableModel(data,headers));
         table.setBounds(0,300,800,400);
         table.setRowHeight(30);
-        table.setFont(new Font("맑은 고딕",Font.BOLD,15));
+        table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         table.setAlignmentX(0);
         table.setSize(800,400);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
@@ -235,11 +236,11 @@ public class Client_App {
 
                 JLabel createMain = new JLabel("Welcome createPanel");
                 createMain.setBounds(120,50,300,40);
-                createMain.setFont(new Font("Lato",Font.BOLD,20));
+                createMain.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 createPanel.add(createMain);	
                 //관리자가 처음 만들어줄 username
                 JLabel username = new JLabel("userName");
-                username.setFont(new Font("Lato",Font.BOLD,20));
+                username.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 username.setBounds(100,150,110,40);
 
                 JTextField textUserName = new JTextField(10);
@@ -248,7 +249,7 @@ public class Client_App {
                 createPanel.add(textUserName);
                 //관리자가 처음 만들어줄 password
                 JLabel password = new JLabel("password");
-                password.setFont(new Font("Late",Font.BOLD,20));
+                password.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 password.setBounds(100,250,110,40);
                 
                 JPasswordField textPassword = new JPasswordField(10);
@@ -352,11 +353,11 @@ public class Client_App {
 
                 JLabel updateMain = new JLabel("Welcome updatePanel");
                 updateMain.setBounds(360,25,300,25);
-                updateMain.setFont(new Font("맑은 고딕",Font.BOLD,20));
+                updateMain.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 updatePanel.add(updateMain);
 
                 JLabel name = new JLabel("Name");
-                name.setFont(new Font("Lato",Font.BOLD,20));
+                name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 name.setBounds(250,120,85,40);
 
                 JTextField textName = new JTextField(10);
@@ -366,7 +367,7 @@ public class Client_App {
                 updatePanel.add(textName);
 
                 JLabel phone = new JLabel("Phone");
-                phone.setFont(new Font("Lato",Font.BOLD,20));
+                phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 phone.setBounds(250,180,85,40);
 
                 JTextField textPhone = new JTextField(10);
@@ -376,7 +377,7 @@ public class Client_App {
                 updatePanel.add(textPhone);
 
                 JLabel age = new JLabel("Age");
-                age.setFont(new Font("Lato",Font.BOLD,20));
+                age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 age.setBounds(265,240,85,40);
 
                 JTextField textAge = new JTextField(2);
@@ -386,7 +387,7 @@ public class Client_App {
                 updatePanel.add(textAge);
 
                 JLabel gender = new JLabel("Gender");
-                gender.setFont(new Font("Lato",Font.BOLD,20));
+                gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 gender.setBounds(235,300,85,40);
 
                 JComboBox comboBoxGender = new JComboBox(new String[]{"Male","Female"});
@@ -395,7 +396,7 @@ public class Client_App {
                 updatePanel.add(comboBoxGender);
 
                 JLabel note = new JLabel("Note");
-                note.setFont(new Font("Lato",Font.BOLD,20));
+                note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 note.setBounds(250,360,85,40);
 
                 JTextArea textNote = new JTextArea();
@@ -492,7 +493,7 @@ public class Client_App {
 
         //테이블 필터만들기 JTextField search 적는순간 적은부분있는것만남게
         JTextField search = new JTextField();
-        search.setFont(new Font("Tahoma",Font.PLAIN,17));
+        search.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,17));
         search.setBounds(76,13,1202,36);
         tablePanel.add(search);
         search.setColumns(10);
@@ -584,6 +585,7 @@ public class Client_App {
         //로그인화면 PW label
         //로그인화면 ID textField
        
+
         textID.setFont(new Font("휴먼고딕", Font.PLAIN, 18));
         textID.setBounds(140,250,220,35);
         
@@ -617,6 +619,7 @@ public class Client_App {
         JPasswordField textPW = new JPasswordField(10);
         textPW.setFont(new Font("굴림", Font.PLAIN, 18));
         textPW.setBounds(140,300,220,35);
+
         //로그인화면 Login Button
         
 //        JButton logBtn =  new JButton("LogIn");
