@@ -77,58 +77,67 @@ public class Client_App {
         profilePanel.setVisible(false);
 
         //메인패널 상단 label
-        JLabel welcomeMain = new JLabel("JOB TIME");
-        welcomeMain.setBounds(360,25,300,25);
-        welcomeMain.setFont(new Font("나눔바른고딕 Light",Font.BOLD ,20 ));
+        JLabel welcomeMain = new JLabel("Job time");
+        welcomeMain.setBounds(340,25,300,40);
+        welcomeMain.setFont(new Font("Vivaldi",Font.BOLD ,35 ));
         profilePanel.add(welcomeMain);
 
-        JLabel name = new JLabel("Name");
+        JLabel name = new JLabel("이름");
         name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         name.setBounds(250,120,85,40);
         JTextField textName = new JTextField(10);
+        textName.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         textName.setBounds(320,120,140,40);
         profilePanel.add(name);
         profilePanel.add(textName);
 
-        JLabel phone = new JLabel("Phone");
+        JLabel phone = new JLabel("휴대폰	");
         phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
         phone.setBounds(250,180,85,40);
+        
         JTextField textPhone = new JTextField(10);
         textPhone.setBounds(320,180,140,40);
+        textPhone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(phone);
         profilePanel.add(textPhone);
 
-        JLabel age = new JLabel("Age");
+        JLabel age = new JLabel("나이");
         age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        age.setBounds(265,240,85,40);
+        age.setBounds(250,240,85,40);
+        
         JTextField textAge = new JTextField(2);
         textAge.setBounds(320,240,140,40);
+        textAge.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(age);
         profilePanel.add(textAge);
 
-        JLabel birthDay = new JLabel("Birthday");
+        JLabel birthDay = new JLabel("생일");      //달력 추가?
         birthDay.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        birthDay.setBounds(235,300,85,40);
+        birthDay.setBounds(250,300,85,40);
+        
         JTextField textBirthDay = new JTextField(8);
         textBirthDay.setBounds(320,300,140,40);
+        textBirthDay.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(birthDay);
         profilePanel.add(textBirthDay);
 
-        JLabel gender = new JLabel("Gender");
+        JLabel gender = new JLabel("성별");
         gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        gender.setBounds(235,360,85,40);
+        gender.setBounds(250,360,85,40);
         
-        JComboBox comboBoxGender = new JComboBox(new String[]{"Male","Female"});
+        JComboBox comboBoxGender = new JComboBox(new String[]{"남자","여자"});
         comboBoxGender.setBounds(320,360,140,40);
+        comboBoxGender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(gender);
         profilePanel.add(comboBoxGender);
 
-        JLabel note = new JLabel("Note");
+        JLabel note = new JLabel("기타사항");
         note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        note.setBounds(250,420,85,40);
+        note.setBounds(240,420,85,40);
         
         JTextArea textNote = new JTextArea();
         textNote.setBounds(320,420,160,90);
+        textNote.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         textNote.setBorder(BorderFactory.createLineBorder(Color.black,1));
         profilePanel.add(note);
         profilePanel.add(textNote);
@@ -142,15 +151,15 @@ public class Client_App {
 		homePanel.setLayout(null);
 		homePanel.setVisible(false);
 		
-		JLabel main = new JLabel("home");
+		JLabel main = new JLabel("Job Time");
 		main.setVerticalAlignment(SwingConstants.TOP);
-        main.setBounds(220,36,167,29);
-        main.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
+        main.setBounds(180,36,167,50);
+        main.setFont(new Font("Vivaldi",Font.BOLD,35));
         homePanel.add(main);
         
         RoundedButton btnNewButton = new RoundedButton("메신저");
         btnNewButton.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton.setBounds(46, 100, 170, 50);
+        btnNewButton.setBounds(165, 100, 170, 50);
         homePanel.add(btnNewButton);
         btnNewButton.addActionListener(new ActionListener() {
             @Override
@@ -161,7 +170,7 @@ public class Client_App {
         
         RoundedButton btnNewButton_1 = new RoundedButton("게시판");
         btnNewButton_1.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton_1.setBounds(46, 170, 170, 50);
+        btnNewButton_1.setBounds(165, 170, 170, 50);
         homePanel.add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
 			
@@ -174,7 +183,7 @@ public class Client_App {
 
         RoundedButton btnNewButton_2 = new RoundedButton("식단표");
         btnNewButton_2.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton_2.setBounds(46, 240, 170, 50);
+        btnNewButton_2.setBounds(165, 240, 170, 50);
         homePanel.add(btnNewButton_2);
         btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -191,7 +200,7 @@ public class Client_App {
         
         RoundedButton btnNewButton_3 = new RoundedButton("채팅서버(관리자용)");
         btnNewButton_3.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton_3.setBounds(46, 310, 170, 50);
+        btnNewButton_3.setBounds(165, 310, 170, 50);
 
         homePanel.add(btnNewButton_3);
         btnNewButton_3.addActionListener(new ActionListener() {
@@ -222,7 +231,7 @@ public class Client_App {
         //JScrollPane < 스크롤이가능한 컴포넌트로 추가한다.
         tablePanel.add(new JScrollPane(table));
         // ************************************* create 패널 ******************************************
-        RoundedButton createBtn = new RoundedButton("Create");
+        RoundedButton createBtn = new RoundedButton("생성");
         createBtn.setBounds(500,600,150,40);
         createBtn.addActionListener(new ActionListener() {
 
@@ -235,31 +244,68 @@ public class Client_App {
                 createPanel.setLayout(null);
 
 
-                JLabel createMain = new JLabel("Welcome createPanel");
-                createMain.setBounds(120,50,300,40);
-                createMain.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
+                JLabel createMain = new JLabel("Job Time");
+                createMain.setBounds(200,50,300,40);
+                createMain.setFont(new Font("Vivaldi",Font.BOLD,35));
                 createPanel.add(createMain);	
                 //관리자가 처음 만들어줄 username
-                JLabel username = new JLabel("userName");
+                JLabel username = new JLabel("아이디");
                 username.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 username.setBounds(100,150,110,40);
 
-                JTextField textUserName = new JTextField(10);
+                JTextField textUserName = new JTextField(15);
                 textUserName.setBounds(220,150,140,40);
+                textUserName.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
+                
+                
+                textUserName.addFocusListener(new FocusListener() {
+        			
+        			@Override
+        			public void focusLost(FocusEvent e) {
+        				// TODO Auto-generated method stub
+        				if(textUserName.getText().trim().equals(""))
+        					textUserName.setText("아이디");
+        				else {
+        					
+        				}
+        						
+        			}
+        			
+        			@Override
+        			public void focusGained(FocusEvent e) {
+        				// TODO Auto-generated method stub
+        				if(textUserName.getText().trim().equals("아이디"))
+        					textUserName.setText("");
+        				else {
+        					
+        				}
+        					
+        			}
+        		});
+                
+                
+                
                 createPanel.add(username);
                 createPanel.add(textUserName);
                 //관리자가 처음 만들어줄 password
-                JLabel password = new JLabel("password");
+                JLabel password = new JLabel("비밀번호");
                 password.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 password.setBounds(100,250,110,40);
                 
-                JPasswordField textPassword = new JPasswordField(10);
+                JPasswordField textPassword = new JPasswordField(15);
                 textPassword.setBounds(220,250,140,40);
+                
+                
+                
+                
+                
+                
                 createPanel.add(password);
                 createPanel.add(textPassword);
                 //취소버튼
-                RoundedButton cancelBtn = new RoundedButton("cancel");
-                cancelBtn.setBounds(200,320,100,35);
+                RoundedButton cancelBtn = new RoundedButton("취소");
+                cancelBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
+                cancelBtn.setBounds(260,320,75,35);
 
                 cancelBtn.addActionListener(new ActionListener() {
                     @Override
@@ -271,8 +317,9 @@ public class Client_App {
                 });
 
                 //username 과 password 저장 버튼 생성 
-                RoundedButton saveBtn = new RoundedButton("save");
-                saveBtn.setBounds(350,320,100,35);
+                RoundedButton saveBtn = new RoundedButton("등록");
+                saveBtn.setBounds(350,320,75,35);
+                saveBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 saveBtn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -329,8 +376,9 @@ public class Client_App {
         
         
         // ************************************* update 패널 ******************************************
-        RoundedButton updateBtn = new RoundedButton("Update");
+        RoundedButton updateBtn = new RoundedButton("정보 수정");
         updateBtn.setBounds(500,700,150,40);
+        updateBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         updateBtn.addActionListener(new ActionListener() {
 
             @Override
@@ -352,64 +400,70 @@ public class Client_App {
                 updatePanel.setLayout(null);
 
 
-                JLabel updateMain = new JLabel("Welcome updatePanel");
-                updateMain.setBounds(360,25,300,25);
-                updateMain.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
+                JLabel updateMain = new JLabel("정보 수정");
+                updateMain.setBounds(320,25,300,50);
+                updateMain.setFont(new Font("나눔바른고딕 Extrabold",Font.BOLD,35));
                 updatePanel.add(updateMain);
 
-                JLabel name = new JLabel("Name");
+                JLabel name = new JLabel("이름");
                 name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                name.setBounds(250,120,85,40);
+                name.setBounds(265,120,85,40);
 
                 JTextField textName = new JTextField(10);
                 textName.setBounds(320,120,140,40);
+                textName.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 textName.setText((String) Name);
                 updatePanel.add(name);
                 updatePanel.add(textName);
 
-                JLabel phone = new JLabel("Phone");
+                JLabel phone = new JLabel("휴대전화");
                 phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                phone.setBounds(250,180,85,40);
+                phone.setBounds(230,180,85,40);
 
                 JTextField textPhone = new JTextField(10);
                 textPhone.setBounds(320,180,140,40);
+                textPhone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 textPhone.setText((String)Phone);
                 updatePanel.add(phone);
                 updatePanel.add(textPhone);
 
-                JLabel age = new JLabel("Age");
+                JLabel age = new JLabel("나이");
                 age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 age.setBounds(265,240,85,40);
 
                 JTextField textAge = new JTextField(2);
                 textAge.setBounds(320,240,140,40);
                 textAge.setText((String)Age);
+                textAge.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 updatePanel.add(age);
                 updatePanel.add(textAge);
 
-                JLabel gender = new JLabel("Gender");
+                JLabel gender = new JLabel("성별");
                 gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                gender.setBounds(235,300,85,40);
+                gender.setBounds(265,300,85,40);
 
-                JComboBox comboBoxGender = new JComboBox(new String[]{"Male","Female"});
+                JComboBox comboBoxGender = new JComboBox(new String[]{"남자","여자"});
                 comboBoxGender.setBounds(320,300,140,40);
+                comboBoxGender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 updatePanel.add(gender);
                 updatePanel.add(comboBoxGender);
 
-                JLabel note = new JLabel("Note");
+                JLabel note = new JLabel("기타사항");
                 note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                note.setBounds(250,360,85,40);
+                note.setBounds(240,360,85,40);
 
                 JTextArea textNote = new JTextArea();
-                textNote.setBounds(320,360,160,90);
+                textNote.setBounds(320,360,160,120);
+                textNote.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
                 textNote.setBorder(BorderFactory.createLineBorder(Color.black,1));
                 textNote.setText((String)Note);
                 updatePanel.add(note);
                 updatePanel.add(textNote);
 
                 //취소버튼
-                RoundedButton cancelBtn = new RoundedButton("Cancel");
-                cancelBtn.setBounds(350,520,100,35);
+                RoundedButton cancelBtn = new RoundedButton("취소");
+                cancelBtn.setBounds(340,520,100,35);
+                cancelBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
 
                 cancelBtn.addActionListener(new ActionListener() {
                     @Override
@@ -419,8 +473,9 @@ public class Client_App {
                         frame.setBounds(100,100,958,551);
                     }
                 });
-                RoundedButton updateSubmitBtn = new RoundedButton("Update");
-                updateSubmitBtn.setBounds(500,520,100,35);
+                RoundedButton updateSubmitBtn = new RoundedButton("수정");
+                updateSubmitBtn.setBounds(450,520,100,35);
+                updateSubmitBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
                 updateSubmitBtn.addActionListener(new ActionListener() {
 
                     @Override
@@ -464,8 +519,9 @@ public class Client_App {
             }
         });
         //*************************************************************************************************
-        RoundedButton deleteBtn = new RoundedButton("Delete");
+        RoundedButton deleteBtn = new RoundedButton("삭제");
         deleteBtn.setBounds(500,400,150,40);
+        deleteBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         deleteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -516,8 +572,8 @@ public class Client_App {
         tablePanel.setVisible(false);
 //        ===============================================================================================================
         
-        //submit(제출 ) 버튼 생성 및 action 
-        JButton submitBtn = new JButton("Submit");
+        //submit(제출 ) 버튼 생성 및 action      
+        RoundedButton submitBtn = new RoundedButton("등록");
         submitBtn.setBounds(500,520,75,40);
         submitBtn.addActionListener(new ActionListener() {
 			
