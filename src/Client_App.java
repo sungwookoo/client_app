@@ -1,3 +1,5 @@
+import carte.Carte;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -5,7 +7,6 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
@@ -619,7 +620,6 @@ public class Client_App {
         JPasswordField textPW = new JPasswordField(10);
         textPW.setFont(new Font("굴림", Font.PLAIN, 18));
         textPW.setBounds(140,300,220,35);
-
         //로그인화면 Login Button
         
 //        JButton logBtn =  new JButton("LogIn");
@@ -629,8 +629,9 @@ public class Client_App {
         
         RoundedButton logBtn = new RoundedButton("LogIn");
         logBtn.setBounds(165, 350, 170, 45);
-        
+
         logBtn.addActionListener(new ActionListener() {
+
         	@Override
         	public void actionPerformed(ActionEvent e) {
 
@@ -680,42 +681,8 @@ public class Client_App {
         			JOptionPane.showMessageDialog(null, "로그인 실패");
         		}
         	}
-        	/*
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(textID.getText().equals("1")&&Arrays.equals(textPW.getPassword(),"1".toCharArray())){
-                    current_id = "1";
-                    System.out.println("Account with no profile");
-                    welcomePanel.setVisible(false);
-                    profilePanel.setVisible(true);
 
-                }
 
-                else if(textID.getText().equals("2")&&Arrays.equals(textPW.getPassword(),"2".toCharArray())){
-                    current_id = "2";
-                    System.out.println("Account with profile");
-                    welcomePanel.setVisible(false);
-                    homePanel.setVisible(true);
-
-                }
-                else if(textID.getText().equals("3")&&Arrays.equals(textPW.getPassword(),"3".toCharArray())){
-                    current_id = "3";
-                    System.out.println("Account with profile");
-                    welcomePanel.setVisible(false);
-                    homePanel.setVisible(true);
-
-                }
-                else if(textID.getText().equals("admin")&&Arrays.equals(textPW.getPassword(),"admin".toCharArray())){
-                    current_id = "admin";
-                    System.out.println("administrator");
-                    welcomePanel.setVisible(false);
-                    tablePanel.setVisible(true);
-
-                }
-                else {
-                    JOptionPane.showMessageDialog(null,"login fail");
-                }
-            }*/
         });
 
         welcomePanel.add(textID);
@@ -779,6 +746,8 @@ public class Client_App {
 
         return bar;
     }
+
+
 }
 
 // 패널에 Image를 쉽게 넣기위해 생성한 ImagePanel
