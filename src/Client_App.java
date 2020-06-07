@@ -38,7 +38,7 @@ public class Client_App {
         TrayIconApp trayIconApp = new TrayIconApp();
         initialize();
     }
-
+ 
     private void initialize(){
         //DB와 GUI 연결하기위한 Customer 객체생성
         Customer customer = new Customer();
