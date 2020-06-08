@@ -21,6 +21,9 @@ public class Client_App {
     private int loginResult=2;
     private String firstCheck ="1";
     private JTextField textID = new JTextField(10);
+//    private HintTextFieldID textID = new HintTextFieldID(" ID");
+//    JPasswordField textPW = new JPasswordField(10);
+//    private HintTextFieldPW textPW = new HintTextFieldPW(" PW");
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -589,7 +592,6 @@ public class Client_App {
         textID.setFont(new Font("휴먼고딕", Font.PLAIN, 18));
         textID.setBounds(140,250,220,35);
         
-      //------------------- ID힌트 -작업중
         textID.addFocusListener(new FocusListener() {
 			
 			@Override
@@ -616,9 +618,46 @@ public class Client_App {
 		});
         
         //로그인화면 PW textField
+//        HintTextField2 textPW = new HintTextField2(" PW");
         JPasswordField textPW = new JPasswordField(10);
         textPW.setFont(new Font("굴림", Font.PLAIN, 18));
         textPW.setBounds(140,300,220,35);
+        
+        char passwordChar = textPW.getEchoChar();
+        textPW.setEchoChar((char)0);
+        textPW.setText("PW");
+        textPW.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				if(textPW.getText().equals("")) {
+					textPW.setText("PW");
+					textPW.setEchoChar(passwordChar);
+				} else {
+					
+				}
+			}
+			
+			
+//			@Override
+//			public void focusGained(FocusEvent e) {
+//				// TODO Auto-generated method stub
+//				textPW.setText("");
+//				textPW.setEchoChar(passwordChar);
+//			}
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				if(textPW.getText().equals("PW")) {
+					textPW.setText("");
+					textPW.setEchoChar(passwordChar);
+				} else {
+					
+				}
+			}
+		});
+        
 
         //로그인화면 Login Button
         

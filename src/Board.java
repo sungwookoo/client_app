@@ -27,7 +27,7 @@ public class Board extends JFrame {
 	
 	private JTextField searchText;
 	private JButton searchBoardBtn;
-	private JButton createBoardBtn;
+	private RoundedButton createBoardBtn;
 	
 	public Board() {
 		initialize();
@@ -143,7 +143,7 @@ public class Board extends JFrame {
 			}
 		});
 		
-		createBoardBtn =new JButton("글작성");
+		createBoardBtn =new RoundedButton("글작성");
 		createBoardBtn.setBounds(565,16,75,27);
 		
 		boardPane.add(createBoardBtn);

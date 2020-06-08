@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.*;
 import java.net.Socket;
@@ -16,11 +18,11 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     private JTextField textField_2;
 
     private JTextField message_tf;
-    private JButton access_btn = new JButton("접속");
-    private JButton notesend_btn = new JButton("쪽지보내기");
-    private JButton joinroom_btn = new JButton("채팅방참여");
-    private JButton createroom_btn = new JButton("방만들기");
-    private JButton send_btn = new JButton("전송");
+    RoundedButton access_btn = new RoundedButton("접속");
+    RoundedButton notesend_btn = new RoundedButton("쪽지보내기");
+    RoundedButton joinroom_btn = new RoundedButton("채팅방참여");
+    RoundedButton createroom_btn = new RoundedButton("방만들기");
+    RoundedButton send_btn = new RoundedButton("전송");
 
     private JList User_list = new JList(); // 전체 접속자 list
     private JList Room_list = new JList(); // 전체 방목록 list
@@ -71,11 +73,13 @@ public class Client extends JFrame implements ActionListener, KeyListener {
             }
         });
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100,100,516,450);
+//        setBounds(100,100,516,450);
+        setBounds(100, 100, 520, 470);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5,5,5,5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
+        contentPane.setBackground(new Color(255, 255, 255));
 
         JLabel lblNewLabel = new JLabel("전체접속자");
         lblNewLabel.setBounds(12,10,86,15);
