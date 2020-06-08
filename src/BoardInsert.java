@@ -40,8 +40,8 @@ public class BoardInsert extends JFrame {
         textArea.setBounds(76, 71, 466, 205);
         getContentPane().add(textArea);
 
-        JButton btnWrite = new JButton("등록");
-        btnWrite.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 15));
+        RoundedButton btnWrite = new RoundedButton("등록");
+        btnWrite.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 13));
         btnWrite.setBounds(467,288,75,30);
         btnWrite.addActionListener(new ActionListener() {
 			
@@ -61,8 +61,8 @@ public class BoardInsert extends JFrame {
         getContentPane().add(btnWrite);
         
         
-        JButton btnClose = new JButton("취소");
-        btnClose.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 15));
+        RoundedButton btnClose = new RoundedButton("취소");
+        btnClose.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 13));
         btnClose.setBounds(389,288,75,30);
         btnClose.addActionListener(new ActionListener() {
 			
