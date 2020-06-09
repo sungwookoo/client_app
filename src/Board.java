@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -37,20 +36,13 @@ public class Board extends JFrame {
 	private void initialize() {
 		Board_list board_list = new Board_list();
 //		board_list.deleteBoardTable();
-//		board_list.createBoardTable();
-		
-		
-		setBounds(300,100,751,500);
+		board_list.createBoardTable();
+		setBounds(300,100,600,330);
 		setTitle("게시판");
-		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-		
 		boardPane = new JPanel();
-		boardPane.setBackground(Color.WHITE);
 		
-//		boardPane.setBorder(new EmptyBorder(5,5,5,5));
-		
+		boardPane.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(boardPane);
-		
 //		boardPane.setLayout(null);
 		
 //		JLabel searchLabel = new JLabel("검색조건");
@@ -65,32 +57,29 @@ public class Board extends JFrame {
 //		
 		
 		
+		createBoardBtn =new JButton("글작성");
+		createBoardBtn.setBounds(400,260,80,20);
+		boardPane.add(createBoardBtn);
 		
+		createBoardBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new BoardInsert();
+			}
+		});
 		
 		
 		String[][] data = Board_list.getBoards();
-		String[] colNames = new String[] {"글번호","제목","작성자","조회수","작성일"};
-		JTable boardTable = new JTable(data,colNames);
+		String[] colNames = new String[] {"글번호","제목","내용...","작성자","조회수","작성일"};
 		
-		boardTable.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+		JTable boardTable = new JTable(data,colNames);
+		boardTable.setBounds(0,0,600,200);
+		boardTable.setRowHeight(30);
+		boardTable.setFont(new Font("Sanserif",Font.BOLD,15));
         boardTable.setAlignmentX(0);
         boardTable.setSize(400,200);
-        
-        
-        boardTable.setModel(new DefaultTableModel(data,colNames) {
-        	public boolean isCellEditable(int row, int column) {
-        		return false;
-        	}
-        });
-        
-        boardTable.getTableHeader().setReorderingAllowed(false);
-        boardTable.getTableHeader().setResizingAllowed(false);
-        
-        boardTable.getTableHeader().setBackground(new Color(80, 188, 223));
-        boardTable.getTableHeader().setForeground(new Color(255,255,255));
-       
-        boardTable.setRowHeight(35);
-        
         
         boardTable.addMouseListener(new MouseAdapter() {
         	@Override
@@ -99,21 +88,20 @@ public class Board extends JFrame {
         		int rowNum = boardTable.getSelectedRow();
         		Object num =boardTable.getValueAt(rowNum, 0);
         		String title =(String) boardTable.getValueAt(rowNum, 1);
-//        		String content =(String) boardTable.getValueAt(rowNum, 2);
-        		Object writer =boardTable.getValueAt(rowNum, 2);
+        		String content =(String) boardTable.getValueAt(rowNum, 2);
+        		Object writer =boardTable.getValueAt(rowNum, 3);
         		
         		//상세조회 클릭시 조회수 오르게끔 구현하기! 
         		Board_list.hitsBoard(num,writer);
         		//Board 상세 정보 
-        		new BoardDetail(num,title,writer);
+        		new BoardDetail(num,title,content,writer);
         		setVisible(false);
         		boardTable.setModel(new DefaultTableModel(board_list.getBoards(),colNames));
 
                 TableColumnModel columnModels = boardTable.getColumnModel();
                 columnModels.getColumn(0).setPreferredWidth(10);
-                columnModels.getColumn(1).setPreferredWidth(50);
-                columnModels.getColumn(2).setPreferredWidth(100);
-                columnModels.getColumn(3).setPreferredWidth(20);
+                columnModels.getColumn(1).setPreferredWidth(100);
+                columnModels.getColumn(3).setPreferredWidth(50);
                 columnModels.getColumn(4).setPreferredWidth(10);
 
                 boardPane.repaint();
@@ -121,14 +109,11 @@ public class Board extends JFrame {
                 validate();
         	}
 		});
-        JScrollPane scrollPane = new JScrollPane(boardTable);
-        scrollPane.setBounds(41, 55, 600, 330);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
-        scrollPane.setPreferredSize(new Dimension(600,330));
-        boardPane.setLayout(null);
+        boardTable.setPreferredScrollableViewportSize(new Dimension(400,200));
         
         searchText=new JTextField();
-		searchText.setBounds(261,397,153,24);
+		searchText.setBounds(220,10,400,20);
 		boardPane.add(searchText);
 		searchText.setColumns(10);
 		
@@ -143,22 +128,7 @@ public class Board extends JFrame {
 			}
 		});
 		
-		RoundedButton createBoardBtn =new RoundedButton("글작성");
-		createBoardBtn.setBounds(565,16,75,27);
-		createBoardBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
-		
-		boardPane.add(createBoardBtn);
-		
-		createBoardBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				new BoardInsert();
-			}
-		});
-		
-		boardPane.add(scrollPane);
+		boardPane.add(new JScrollPane(boardTable));
 		
 		this.setVisible(true);
 	}
