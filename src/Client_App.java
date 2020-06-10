@@ -12,7 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-//test 
+
 
 public class Client_App {
     public static JFrame frame;
@@ -692,6 +692,7 @@ public class Client_App {
         textPW.setFont(new Font("굴림", Font.PLAIN, 18));
 //        textPW.setBounds(140,300,220,35);
         textPW.setBounds(88,320,315,47);
+
 
         
         char passwordChar = textPW.getEchoChar();
