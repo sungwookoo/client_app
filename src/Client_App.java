@@ -1,14 +1,18 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-//test  
+
 
 public class Client_App {
     public static JFrame frame;
@@ -53,7 +57,7 @@ public class Client_App {
         frame.setBounds(100, 100, 1000, 706);
 		frame.getContentPane().setLayout(null);
 
-		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/backgroundall.png").getImage());
+		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/LoginBackground2.png").getImage());
 
 //		JPanel profilePanel, tablePanel, homePanel;
 
@@ -151,16 +155,18 @@ public class Client_App {
 		frame.getContentPane().add(homePanel);
 		homePanel.setLayout(null);
 		homePanel.setVisible(false);
+//		homePanel.setSize(welcomePanel.getWidth(), welcomePanel.getHeight());
 		
 		JLabel main = new JLabel("Job Time");
 		main.setVerticalAlignment(SwingConstants.TOP);
-        main.setBounds(180,36,167,50);
+//        main.setBounds(170,36,167,50);
+        main.setBounds(170,66,167,50);
         main.setFont(new Font("Vivaldi",Font.BOLD,35));
         homePanel.add(main);
         
         RoundedButton btnNewButton = new RoundedButton("메신저");
         btnNewButton.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton.setBounds(165, 100, 170, 50);
+        btnNewButton.setBounds(160, 140, 170, 50);
         homePanel.add(btnNewButton);
         btnNewButton.addActionListener(new ActionListener() {
             @Override
@@ -171,7 +177,7 @@ public class Client_App {
         
         RoundedButton btnNewButton_1 = new RoundedButton("게시판");
         btnNewButton_1.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton_1.setBounds(165, 170, 170, 50);
+        btnNewButton_1.setBounds(160, 210, 170, 50);
         homePanel.add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
 			
@@ -184,7 +190,7 @@ public class Client_App {
 
         RoundedButton btnNewButton_2 = new RoundedButton("식단표");
         btnNewButton_2.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton_2.setBounds(165, 240, 170, 50);
+        btnNewButton_2.setBounds(160, 280, 170, 50);
         homePanel.add(btnNewButton_2);
         btnNewButton_2.addActionListener(new ActionListener() {
 			
@@ -201,7 +207,7 @@ public class Client_App {
         
         RoundedButton btnNewButton_3 = new RoundedButton("채팅서버(관리자용)");
         btnNewButton_3.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        btnNewButton_3.setBounds(165, 310, 170, 50);
+        btnNewButton_3.setBounds(160, 350, 170, 50);
 
         homePanel.add(btnNewButton_3);
         btnNewButton_3.addActionListener(new ActionListener() {
@@ -421,7 +427,7 @@ public class Client_App {
                 phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
                 phone.setBounds(230,180,85,40);
 
-                JTextField textPhone = new JTextField(10);
+                JTextField textPhone = new JTextField("휴대전화",10);
                 textPhone.setBounds(320,180,140,40);
                 textPhone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 textPhone.setText((String)Phone);
@@ -643,9 +649,13 @@ public class Client_App {
         //로그인화면 PW label
         //로그인화면 ID textField
        
+        JLabel id = new JLabel("아이디");
+        id.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,15));
+        id.setBounds(93,190,85,40);
 
         textID.setFont(new Font("휴먼고딕", Font.PLAIN, 18));
-        textID.setBounds(140,250,220,35);
+//        textID.setBounds(87,280,300,47);
+        textID.setBounds(88,225,315,47);
         
         textID.addFocusListener(new FocusListener() {
 			
@@ -673,10 +683,16 @@ public class Client_App {
 		});
         
         //로그인화면 PW textField
-//        HintTextField2 textPW = new HintTextField2(" PW");
+
+        JLabel pw = new JLabel("비밀번호");
+        pw.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,15));
+        pw.setBounds(93,285,85,40);
+        
         JPasswordField textPW = new JPasswordField(10);
         textPW.setFont(new Font("굴림", Font.PLAIN, 18));
-        textPW.setBounds(140,300,220,35);
+//        textPW.setBounds(140,300,220,35);
+        textPW.setBounds(88,320,315,47);
+
 
         
         char passwordChar = textPW.getEchoChar();
@@ -724,7 +740,8 @@ public class Client_App {
 //        logBtn.setBounds(500,420,170,45);
         
         RoundedButton logBtn = new RoundedButton("LogIn");
-        logBtn.setBounds(165, 350, 170, 45);
+        logBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+        logBtn.setBounds(153, 400, 185, 50);
 
         logBtn.addActionListener(new ActionListener() {
 
@@ -781,7 +798,9 @@ public class Client_App {
 
         });
 
+        welcomePanel.add(id);
         welcomePanel.add(textID);
+        welcomePanel.add(pw);
         welcomePanel.add(textPW);
         welcomePanel.add(logBtn);
    //****************************************************************************************

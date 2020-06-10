@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.awt.Font;
 
 //채팅클라이언트
 public class Client extends JFrame implements ActionListener, KeyListener {
@@ -53,10 +54,15 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     }
 
     private void start(){
+        access_btn.setFont(new Font("굴림", Font.PLAIN, 16));
         access_btn.addActionListener(this);
+        notesend_btn.setFont(new Font("굴림", Font.PLAIN, 16));
         notesend_btn.addActionListener(this);
+        joinroom_btn.setFont(new Font("굴림", Font.PLAIN, 16));
         joinroom_btn.addActionListener(this);
+        createroom_btn.setFont(new Font("굴림", Font.PLAIN, 16));
         createroom_btn.addActionListener(this);
+        send_btn.setFont(new Font("굴림", Font.PLAIN, 16));
         send_btn.addActionListener(this);
         message_tf.addKeyListener(this);
     }
@@ -74,7 +80,8 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         });
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        setBounds(100,100,516,450);
-        setBounds(100, 100, 520, 470);
+//        setBounds(100, 100, 520, 470);
+        setBounds(100, 100, 570, 628);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5,5,5,5));
         setContentPane(contentPane);
@@ -82,50 +89,57 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         contentPane.setBackground(new Color(255, 255, 255));
 
         JLabel lblNewLabel = new JLabel("전체접속자");
-        lblNewLabel.setBounds(12,10,86,15);
+        lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 16));
+        lblNewLabel.setBounds(25,107,114,23);
         contentPane.add(lblNewLabel);
         User_list.setListData(user_list);
         JScrollPane scrollList = new JScrollPane(User_list,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollList.setBounds(12,32,109,117);
+        scrollList.setBounds(24,132,120,109);
         contentPane.add(scrollList);
 
 
-        access_btn.setBounds(417,3,63,23);
+        access_btn.setBounds(447,92,73,31);
         contentPane.add(access_btn);
 
-        notesend_btn.setBounds(12,159,109,23);
+        notesend_btn.setBounds(24,253,120,33);
         contentPane.add(notesend_btn);
 
         JLabel lblNewLabel_1 = new JLabel("채팅방목록");
-        lblNewLabel_1.setBounds(12,192,97,15);
+        lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 16));
+        lblNewLabel_1.setBounds(24,299,114,23);
         contentPane.add(lblNewLabel_1);
 
         scrollList = new JScrollPane(Room_list,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollList.setBounds(12,213,109,135);
+        scrollList.setBounds(24,320,120,149);
         contentPane.add(scrollList);
         Room_list.setListData(room_list);
 
-        joinroom_btn.setBounds(12,358,109,23);
+        joinroom_btn.setBounds(24,481,120,33);
         contentPane.add(joinroom_btn);
 
 
-        createroom_btn.setBounds(12,386,109,23);
+        createroom_btn.setBounds(24,521,120,33);
         contentPane.add(createroom_btn);
 
         JScrollPane scrollPane = new JScrollPane(Chat_area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(133,29,344,347);
+        scrollPane.setBounds(152,132,368,337);
         contentPane.add(scrollPane);
         Chat_area.setEditable(false);
 
         message_tf = new JTextField();
-        message_tf.setBounds(133,387,279,21);
+        message_tf.setBounds(158,483,276,70);
         contentPane.add(message_tf);
         message_tf.setColumns(10);
         message_tf.setEnabled(false);
 
-        send_btn.setBounds(414,386,63,23);
+        send_btn.setBounds(447,483,73,41);
         contentPane.add(send_btn);
         send_btn.setEnabled(false);
+        
+        JLabel lblNewLabel_2 = new JLabel("");
+        lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\kgd7054\\Desktop\\logo.png"));
+        lblNewLabel_2.setBounds(14, 0, 91, 88);
+        contentPane.add(lblNewLabel_2);
 
         this.setVisible(true);
     }
