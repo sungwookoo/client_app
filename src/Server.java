@@ -18,8 +18,10 @@ public class Server extends JFrame implements ActionListener {
     private JPanel contentPane;
     private JTextField port_tf;
     private JTextArea textArea = new JTextArea();
-    private JButton start_btn = new JButton("서버 실행");
-    private JButton stop_btn = new JButton("서버 중지");
+//    private JButton start_btn = new JButton("서버 실행");
+    RoundedButton start_btn = new RoundedButton("서버 실행");
+//    private JButton stop_btn = new JButton("서버 중지");
+    RoundedButton stop_btn = new RoundedButton("서버 중지");
 
     //network 자원
     private ServerSocket server_socket;
