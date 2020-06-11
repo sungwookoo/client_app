@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileInputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -10,8 +9,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-
-
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -39,26 +36,27 @@ public class ExcelManager {
 	       
 	        //첫번째 시트를 읽음
 	        XSSFSheet sheet = workbook.getSheetAt(0);
-	        for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+	        
+	        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 	            list.add(readCellData(sheet.getRow(i)));
 	        }
 	        return list;
-	    }
+	    }	        
+	   
 	   
 	    private HashMap<String, String> readCellData(XSSFRow row) {
 	        HashMap<String, String> hMap = new HashMap<String, String>();
 	        int maxNum = row.getLastCellNum();
 	        for(int i = 0; i < maxNum; i++){
 	            hMap.put("attr"+i,getStringCellData(row.getCell(i)));
-	        }
+	        }	       
 	        return hMap;
 	    }   
 
 	    private String getStringCellData (XSSFCell cell) {
 	        DecimalFormat df = new DecimalFormat();
-	        FormulaEvaluator evaluator = new
-
-	                         XSSFWorkbook().getCreationHelper().createFormulaEvaluator();
+	        FormulaEvaluator evaluator =
+	        		new XSSFWorkbook().getCreationHelper().createFormulaEvaluator();
 	        if (cell != null) {
 	            String data = null;
 	            switch (cell.getCellType()) {

@@ -31,7 +31,7 @@ public class Carte extends JFrame {
     public Object data[][];
     
 	public Carte() throws Exception {
-		setBounds(300,100,600,330);
+		setBounds(300,100,727,476);
 		setTitle("식단표");
 		cartePane = new JPanel();
 		setContentPane(cartePane);
@@ -42,6 +42,7 @@ public class Carte extends JFrame {
 			data[i][0]=Integer.toString(i+1);
 			
 		}
+
 		
 		for(int i =0 ; i<list.size();i++) {
 			int sizeMap = list.get(i).size();
@@ -49,10 +50,14 @@ public class Carte extends JFrame {
 				data[i][j+1] =list.get(i).get("attr"+j);
 			}
 		}
+		
+		
 				table =new JTable(data,colNames);
 		table.setRowHeight(30);
 		table.getColumn("").setPreferredWidth(10);
+		cartePane.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(79, 65, 550, 232);
 		scrollPane.setPreferredSize(new Dimension(550,232));  //크기 조절 ! 
 		cartePane.add(scrollPane);
 //		cartePane.add(new JScrollPane(table),BorderLayout.CENTER);
