@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -28,7 +31,9 @@ public class Carte extends JFrame {
 	public Carte() throws Exception {
 		setBounds(300,100,727,476);
 		setTitle("식단표");
+		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
 		cartePane = new JPanel();
+		cartePane.setBackground(Color.WHITE);
 		setContentPane(cartePane);
 		java.util.List<HashMap<String,String>> list =ExcelManager.getInstance().getListExcel();
 		data= new String[list.size()][6];
@@ -47,12 +52,26 @@ public class Carte extends JFrame {
 		}
 		
 		
-				table =new JTable(data,colNames);
-		table.setRowHeight(30);
+		table = new JTable(data, colNames);
+		
+		table.setModel(new DefaultTableModel(data, colNames) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		});
+		table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		
 		table.getColumn("").setPreferredWidth(10);
+
+        table.getTableHeader().setBackground(new Color(0, 128, 0));
+        table.getTableHeader().setForeground(new Color(255,255,255));
+		table.setRowHeight(30);
+		
 		cartePane.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(79, 65, 550, 232);
+		scrollPane.setBounds(77, 129, 550, 232);
 		scrollPane.setPreferredSize(new Dimension(550,232));  //크기 조절 ! 
 		cartePane.add(scrollPane);
 //		cartePane.add(new JScrollPane(table),BorderLayout.CENTER);
