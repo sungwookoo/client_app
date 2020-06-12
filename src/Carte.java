@@ -16,6 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 
 
@@ -74,6 +76,11 @@ public class Carte extends JFrame {
 		scrollPane.setBounds(77, 129, 550, 232);
 		scrollPane.setPreferredSize(new Dimension(550,232));  //크기 조절 ! 
 		cartePane.add(scrollPane);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\kgd7054\\Desktop\\logo.png"));
+		lblNewLabel.setBounds(6, 3, 99, 83);
+		cartePane.add(lblNewLabel);
 //		cartePane.add(new JScrollPane(table),BorderLayout.CENTER);
 		
 		try {
@@ -153,5 +160,4 @@ public class Carte extends JFrame {
 		
 		this.setVisible(true);
 	}
-
 }
