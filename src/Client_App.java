@@ -12,7 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-//test 
+
 
 public class Client_App {
     public static JFrame frame;
@@ -693,6 +693,7 @@ public class Client_App {
 //        textPW.setBounds(140,300,220,35);
         textPW.setBounds(88,320,315,47);
 
+
         
         char passwordChar = textPW.getEchoChar();
         textPW.setEchoChar((char)0);
@@ -814,30 +815,31 @@ public class Client_App {
       
       
     //************************************* 상단 메뉴바 ******************************************
-    public JMenuBar menuBar(JPanel panel) {
+    	public JMenuBar menuBar(JPanel panel) {
     	
-
-//		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/background.jpg").getImage());
-//		frame.getContentPane().add(welcomePanel);
-
     	
         JMenuBar bar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
+        fileMenu.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         JMenu aboutMenu = new JMenu("About");
+        aboutMenu.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         
         bar.add(fileMenu);
         bar.add(aboutMenu);
     
         
         JMenuItem openFile = new JMenuItem("Open");
+        openFile.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         JMenuItem exit = new JMenuItem("Exit"); 
+        exit.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         JMenuItem logout = new JMenuItem("logout");
+        logout.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         
         fileMenu.add(openFile);
         fileMenu.add(logout);
         fileMenu.addSeparator();
         fileMenu.add(exit);
-        
+         
 
         exit.addActionListener(new ActionListener() {
             @Override
