@@ -839,7 +839,7 @@ public class Client_App {
         fileMenu.add(logout);
         fileMenu.addSeparator();
         fileMenu.add(exit);
-        
+         
 
         exit.addActionListener(new ActionListener() {
             @Override
