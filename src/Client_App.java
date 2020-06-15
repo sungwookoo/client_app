@@ -847,7 +847,7 @@ public class Client_App {
                 System.exit(0);
             }
         });
-        
+                
         logout.addActionListener(new ActionListener() {
 			
 			@Override

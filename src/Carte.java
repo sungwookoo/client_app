@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 
 
 
-
+        
 public class Carte extends JFrame {
 	
 	private static JPanel cartePane;

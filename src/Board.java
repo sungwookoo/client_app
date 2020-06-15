@@ -35,7 +35,7 @@ public class Board extends JFrame {
 		initialize();
 	}
 	
-	
+	    
 	private void initialize() {
 		Board_list board_list = new Board_list();
 //		board_list.deleteBoardTable();
