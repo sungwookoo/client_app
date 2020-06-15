@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import java.awt.Font;
 
-//채팅클라이언트 
+//채팅클라이언트  
 public class Client extends JFrame implements ActionListener, KeyListener {
 
     private JPanel contentPane;
