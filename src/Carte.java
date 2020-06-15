@@ -78,7 +78,7 @@ public class Carte extends JFrame {
 		cartePane.add(scrollPane);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\kgd7054\\Desktop\\logo.png"));
+		lblNewLabel.setIcon(new ImageIcon("./img/logo.png"));
 		lblNewLabel.setBounds(6, 3, 99, 83);
 		cartePane.add(lblNewLabel);
 //		cartePane.add(new JScrollPane(table),BorderLayout.CENTER);
