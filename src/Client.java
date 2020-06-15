@@ -137,7 +137,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         send_btn.setEnabled(false);
         
         JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\kgd7054\\Desktop\\logo.png"));
+        lblNewLabel_2.setIcon(new ImageIcon("./img/logo.png"));
         lblNewLabel_2.setBounds(14, 0, 91, 88);
         contentPane.add(lblNewLabel_2);
 

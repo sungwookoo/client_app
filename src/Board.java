@@ -167,7 +167,7 @@ public class Board extends JFrame {
 		boardPane.add(scrollPane);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\kgd7054\\Desktop\\logo.png"));
+		lblNewLabel.setIcon(new ImageIcon("./img/logo.png"));
 		lblNewLabel.setBounds(-2, 3, 97, 91);
 		boardPane.add(lblNewLabel);
 		
