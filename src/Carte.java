@@ -1,9 +1,8 @@
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.List;
-import java.io.File;
+import java.awt.Font;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,17 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 
 
-
+        
 public class Carte extends JFrame {
 	
 	private static JPanel cartePane;
@@ -31,9 +31,11 @@ public class Carte extends JFrame {
     public Object data[][];
     
 	public Carte() throws Exception {
-		setBounds(300,100,600,330);
+		setBounds(300,100,727,476);
 		setTitle("식단표");
+		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
 		cartePane = new JPanel();
+		cartePane.setBackground(Color.WHITE);
 		setContentPane(cartePane);
 		java.util.List<HashMap<String,String>> list =ExcelManager.getInstance().getListExcel();
 		data= new String[list.size()][6];
@@ -42,6 +44,7 @@ public class Carte extends JFrame {
 			data[i][0]=Integer.toString(i+1);
 			
 		}
+
 		
 		for(int i =0 ; i<list.size();i++) {
 			int sizeMap = list.get(i).size();
@@ -49,12 +52,35 @@ public class Carte extends JFrame {
 				data[i][j+1] =list.get(i).get("attr"+j);
 			}
 		}
-				table =new JTable(data,colNames);
-		table.setRowHeight(30);
+		
+		
+		table = new JTable(data, colNames);
+		
+		table.setModel(new DefaultTableModel(data, colNames) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		});
+		table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		
 		table.getColumn("").setPreferredWidth(10);
+
+        table.getTableHeader().setBackground(new Color(0, 128, 0));
+        table.getTableHeader().setForeground(new Color(255,255,255));
+		table.setRowHeight(30);
+		
+		cartePane.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(77, 129, 550, 232);
 		scrollPane.setPreferredSize(new Dimension(550,232));  //크기 조절 ! 
 		cartePane.add(scrollPane);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("./img/logo.png"));
+		lblNewLabel.setBounds(6, 3, 99, 83);
+		cartePane.add(lblNewLabel);
 //		cartePane.add(new JScrollPane(table),BorderLayout.CENTER);
 		
 		try {
@@ -134,5 +160,4 @@ public class Carte extends JFrame {
 		
 		this.setVisible(true);
 	}
-
 }
