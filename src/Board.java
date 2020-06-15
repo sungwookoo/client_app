@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class Board extends JFrame {
 	//Board Main 화면
@@ -40,7 +42,7 @@ public class Board extends JFrame {
 //		board_list.createBoardTable();
 		
 		
-		setBounds(300,100,751,500);
+		setBounds(300,100,705,566);
 		setTitle("게시판");
 		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
 		
@@ -122,13 +124,13 @@ public class Board extends JFrame {
         	}
 		});
         JScrollPane scrollPane = new JScrollPane(boardTable);
-        scrollPane.setBounds(41, 55, 600, 330);
+        scrollPane.setBounds(40, 131, 600, 330);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
         scrollPane.setPreferredSize(new Dimension(600,330));
         boardPane.setLayout(null);
         
         searchText=new JTextField();
-		searchText.setBounds(261,397,153,24);
+		searchText.setBounds(260,473,153,24);
 		boardPane.add(searchText);
 		searchText.setColumns(10);
 		
@@ -148,7 +150,7 @@ public class Board extends JFrame {
 
 		RoundedButton createBoardBtn =new RoundedButton("글작성");
 
-		createBoardBtn.setBounds(565,16,75,27);
+		createBoardBtn.setBounds(565,87,75,27);
 		createBoardBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
 		
 		boardPane.add(createBoardBtn);
@@ -163,6 +165,11 @@ public class Board extends JFrame {
 		});
 		
 		boardPane.add(scrollPane);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\kgd7054\\Desktop\\logo.png"));
+		lblNewLabel.setBounds(-2, 3, 97, 91);
+		boardPane.add(lblNewLabel);
 		
 		this.setVisible(true);
 	}
