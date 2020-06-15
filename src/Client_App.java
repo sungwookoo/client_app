@@ -643,7 +643,7 @@ public class Client_App {
 
 
       
-        //************************************* LOGIN 화면 ******************************************
+        //************************************* LOGIN 로그인 화면 ******************************************
 
         //로그인화면 ID label
         //로그인화면 PW label
@@ -815,7 +815,7 @@ public class Client_App {
       
       
     //************************************* 상단 메뉴바 ******************************************
-    	public JMenuBar menuBar(JPanel panel) {
+    	public JMenuBar menuBar(ImagePanel panel) {
     	
     	
         JMenuBar bar = new JMenuBar();
@@ -856,7 +856,7 @@ public class Client_App {
 				homePanel.setVisible(false);
 				tablePanel.setVisible(false);
 				panel.setVisible(true);
-				frame.setBounds(100,100,528,482);
+//                frame.setBounds(100, 100, 1000, 706);
 			}
 		});
 
