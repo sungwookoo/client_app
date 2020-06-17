@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JSeparator;
+import javax.swing.UIManager;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class BoardInsert extends JFrame {
 	
@@ -29,20 +33,21 @@ public class BoardInsert extends JFrame {
 		
 		JTextField title = new JTextField("제목을 입력해 주세요.");
 		title.setFont(new Font("나눔바른고딕 Light", Font.BOLD, 15));
-		title.setBounds(76,25,200,34);
+		title.setBounds(88,86,466,34);
 		getContentPane().add(title);
 		title.setColumns(10);
 		
 		JTextArea textArea = new JTextArea("");
+		textArea.setToolTipText("");
 		textArea.setFont(new Font("나눔바른고딕 Light", Font.BOLD, 13));
 		textArea.setLineWrap(true);
         textArea.setRows(7);
-        textArea.setBounds(76, 71, 466, 205);
+        textArea.setBounds(88, 142, 466, 205);
         getContentPane().add(textArea);
 
         RoundedButton btnWrite = new RoundedButton("등록");
         btnWrite.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 13));
-        btnWrite.setBounds(467,288,75,30);
+        btnWrite.setBounds(473,369,75,30);
         btnWrite.addActionListener(new ActionListener() {
 			
 			@Override
@@ -63,7 +68,7 @@ public class BoardInsert extends JFrame {
         
         RoundedButton btnClose = new RoundedButton("취소");
         btnClose.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 13));
-        btnClose.setBounds(389,288,75,30);
+        btnClose.setBounds(384,369,75,30);
         btnClose.addActionListener(new ActionListener() {
 			
 			@Override
@@ -74,9 +79,39 @@ public class BoardInsert extends JFrame {
 		});
         getContentPane().add(btnClose);
         
+        JLabel lblNewLabel = new JLabel("제목");
+        lblNewLabel.setFont(new Font("나눔스퀘어라운드 Regular", Font.PLAIN, 15));
+        lblNewLabel.setBounds(24, 86, 62, 34);
+        getContentPane().add(lblNewLabel);
+        
+        JLabel lblNewLabel_1 = new JLabel("글내용\r\n");
+        lblNewLabel_1.setBackground(UIManager.getColor("Button.highlight"));
+        lblNewLabel_1.setFont(new Font("나눔스퀘어라운드 Regular", Font.PLAIN, 15));
+        lblNewLabel_1.setBounds(12, 144, 62, 34);
+        getContentPane().add(lblNewLabel_1);
+        
+        JSeparator separator = new JSeparator();
+        separator.setBounds(8, 130, 546, 25);
+        separator.setBackground(Color.BLACK);
+        getContentPane().add(separator);
+        
+        JSeparator separator_1 = new JSeparator();
+        separator_1.setBackground(Color.BLACK);
+        separator_1.setBounds(12, 356, 546, 25);
+        getContentPane().add(separator_1);
+        
+        JSeparator separator_2 = new JSeparator();
+        separator_2.setBackground(Color.BLACK);
+        separator_2.setBounds(8, 74, 546, 25);
+        getContentPane().add(separator_2);
+        
+        JLabel lblNewLabel_2 = new JLabel("게시글 작성\r\n");
+        lblNewLabel_2.setFont(new Font("나눔스퀘어라운드 ExtraBold", Font.BOLD, 18));
+        lblNewLabel_2.setBounds(217, 12, 154, 34);
+        getContentPane().add(lblNewLabel_2);
+        
 		setVisible(true);
 		
 		
 	}
-
 }
