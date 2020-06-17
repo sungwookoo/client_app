@@ -19,6 +19,8 @@ public class Client_App {
     private JPanel profilePanel;
     private JPanel tablePanel;
     private JPanel homePanel;
+    private JPanel updatePanel = new JPanel();
+    private JPanel createPanel = new JPanel();
     static String current_id = "";
     static String userName;
     private int loginResult=2;
@@ -260,7 +262,7 @@ public class Client_App {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JPanel createPanel = new JPanel();
+
 				frame.setBounds(100,100,528,482);
                 createPanel.setBounds(0,0,welcomePanel.getWidth(),welcomePanel.getHeight());
                 createPanel.setBackground(Color.WHITE);
@@ -417,7 +419,7 @@ public class Client_App {
                 Object Age =table.getValueAt(row1, 5);
                 Object Note =table.getValueAt(row1, 6);
 
-                JPanel updatePanel = new JPanel();
+
                 updatePanel.setBounds(0,0,958,751);
                 updatePanel.setBackground(Color.WHITE);
                 updatePanel.setLayout(null);
@@ -871,6 +873,8 @@ public class Client_App {
 				profilePanel.setVisible(false);
 				homePanel.setVisible(false);
 				tablePanel.setVisible(false);
+                updatePanel.setVisible(false);
+                createPanel.setVisible(false);
 				panel.setVisible(true);
 				frame.setSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
 				frame.setPreferredSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
