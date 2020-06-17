@@ -225,13 +225,28 @@ public class Client_App {
 //        tablePanel.setLayout(new FlowLayout());
         tablePanel.setBounds(0,0,958,551);
         String[][] data = customer.getCustomers();
-        String[] headers = new String[]{"ID","UserName","Password","Name","Phone","Gender","Age","Note"};
+//        String[] headers = new String[]{"ID","UserName","Password","Name","Phone","Gender","Age","Note"};
+        String[] headers = new String[]{"UserName","Password","Name","Phone","Gender","Age","Note"};
         JTable table = new JTable(data,headers);
 //        table.setModel(new DefaultTableModel(data,headers));
         table.setBounds(0,300,800,400);
         table.setRowHeight(30);
         table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         table.setAlignmentX(0);
+        
+        table.setModel(new DefaultTableModel(data, headers) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		});
+        
+        
+        table.getTableHeader().setReorderingAllowed(false);   //table 사이즈,내용 수정 불가
+        table.getTableHeader().setResizingAllowed(false);
+        
+        table.getTableHeader().setBackground(new Color(80, 188, 223));
+        table.getTableHeader().setForeground(new Color(255,255,255));
+        
         table.setSize(800,400);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
         table.setPreferredScrollableViewportSize(new Dimension(800,400));
@@ -393,13 +408,13 @@ public class Client_App {
 
                 frame.setBounds(100,100,958,721);
                 int row1=table.getSelectedRow();
-                Object id= table.getValueAt(row1, 0);
-                Object userName= table.getValueAt(row1, 1);
-                Object Name =table.getValueAt(row1, 3);
-                Object Phone =table.getValueAt(row1, 4);
-                Object Gender =table.getValueAt(row1, 5);
-                Object Age =table.getValueAt(row1, 6);
-                Object Note =table.getValueAt(row1, 7);
+//                Object id= table.getValueAt(row1, 0);
+                Object userName= table.getValueAt(row1, 0);
+                Object Name =table.getValueAt(row1, 2);
+                Object Phone =table.getValueAt(row1, 3);
+                Object Gender =table.getValueAt(row1, 4);
+                Object Age =table.getValueAt(row1, 5);
+                Object Note =table.getValueAt(row1, 6);
 
                 JPanel updatePanel = new JPanel();
                 updatePanel.setBounds(0,0,958,751);
@@ -533,9 +548,9 @@ public class Client_App {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row1= table.getSelectedRow();
-                Object deleteId=table.getValueAt(row1,0);
-                Object deleteUsername=table.getValueAt(row1,1);
-                customer.deleteCustomer(deleteId,deleteUsername);
+//                Object deleteId=table.getValueAt(row1,0);
+                Object deleteUsername=table.getValueAt(row1,0);
+                customer.deleteCustomer(deleteUsername);
                 
                 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
@@ -653,7 +668,7 @@ public class Client_App {
         id.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,15));
         id.setBounds(93,190,85,40);
 
-        textID.setFont(new Font("휴먼고딕", Font.PLAIN, 18));
+        textID.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 18));
 //        textID.setBounds(87,280,300,47);
         textID.setBounds(88,225,315,47);
         
@@ -689,7 +704,7 @@ public class Client_App {
         pw.setBounds(93,285,85,40);
         
         JPasswordField textPW = new JPasswordField(10);
-        textPW.setFont(new Font("굴림", Font.PLAIN, 18));
+        textPW.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 18));
 //        textPW.setBounds(140,300,220,35);
         textPW.setBounds(88,320,315,47);
 

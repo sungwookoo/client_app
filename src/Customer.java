@@ -27,13 +27,14 @@ public class Customer {
         try{
             Connection con = getConnection();
             //select 찾을것, from 테이블이름
-            PreparedStatement statement = con.prepareStatement("SELECT id,username,password, name, phone, gender, age, note FROM customer");
+//            PreparedStatement statement = con.prepareStatement("SELECT id,username,password, name, phone, gender, age, note FROM customer");
+            PreparedStatement statement = con.prepareStatement("SELECT username,password, name, phone, gender, age, note FROM customer");
             ResultSet results = statement.executeQuery();
             ArrayList<String[]> list = new ArrayList<String[]>();
             while(results.next()) {
                 //1차배열의 string값
                 list.add(new String[]{
-                        results.getString("id"),
+//                        results.getString("id"),
                         results.getString("username"),
                         results.getString("password"),
                         results.getString("name"),
@@ -45,7 +46,7 @@ public class Customer {
             }
             System.out.println("The data has been fetched");
             //리스트를 2차어레이로 변환해야하는데 얼마나많은데이터인지 모르기때문에 행은 list.size() / 열은 name phone gender age note  5개이므로 5
-            String[][] arr = new String[list.size()][8];
+            String[][] arr = new String[list.size()][7];
             return list.toArray(arr);
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -203,14 +204,15 @@ public class Customer {
        }
     }
 
-    public static void deleteCustomer(Object deleteId,Object deleteUsername){
+    public static void deleteCustomer(Object deleteUsername){
         try {
             Connection con = getConnection();
             PreparedStatement deleteCustomer = con.prepareStatement(
-                    "DELETE FROM customer WHERE username=? AND id=?"
+//                    "DELETE FROM customer WHERE username=? AND id=?"
+            		"DELETE FROM customer WHERE username=?"
             );
             deleteCustomer.setString(1,(String) deleteUsername);
-            deleteCustomer.setString(2,(String) deleteId);
+//            deleteCustomer.setString(2,(String) deleteId);
             deleteCustomer.executeUpdate();
         }catch(Exception e) {
             System.out.println(e.getMessage());
