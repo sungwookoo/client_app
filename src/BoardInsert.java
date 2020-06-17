@@ -3,6 +3,12 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,6 +42,29 @@ public class BoardInsert extends JFrame {
 		title.setBounds(88,86,466,34);
 		getContentPane().add(title);
 		title.setColumns(10);
+		
+		title.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				if(title.getText().trim().equals(""))
+					title.setText("제목을 입력해 주세요.");
+				else {
+					
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				if(title.getText().trim().equals("제목을 입력해 주세요."))
+					title.setText("");
+				else {
+					
+				}
+			}
+		});
 		
 		JTextArea textArea = new JTextArea("");
 		textArea.setToolTipText("");
