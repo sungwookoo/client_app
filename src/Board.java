@@ -39,33 +39,16 @@ public class Board extends JFrame {
 	    
 	private void initialize() {
 		Board_list board_list = new Board_list();
-//		board_list.deleteBoardTable();
-//		board_list.createBoardTable();
-		
-		
+
 		setBounds(300,100,705,566);
 		setTitle("게시판");
 		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
 		
 		boardPane = new JPanel();
 		boardPane.setBackground(Color.WHITE);
-		
-//		boardPane.setBorder(new EmptyBorder(5,5,5,5));
-		
+
 		setContentPane(boardPane);
-		
-//		boardPane.setLayout(null);
-		
-//		JLabel searchLabel = new JLabel("검색조건");
-//		searchLabel.setBounds(70,10,86,15);
-//		boardPane.add(searchLabel);
-//		
-//		JComboBox comboBox = new JComboBox();
-//		
-//		comboBox.setModel(new DefaultComboBoxModel(new String[] {"title", "content","writer"}));
-//		comboBox.setBounds(130,10,74,21);
-//		boardPane.add(comboBox);
-//		
+
 		String[][] data = Board_list.getBoards();
 		String[] colNames = new String[] {"번호","제목","작성자","조회수","작성일"};
 		JTable boardTable = new JTable(data,colNames);
