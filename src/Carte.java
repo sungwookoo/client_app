@@ -141,15 +141,7 @@ public class Carte extends JFrame {
 			}
 
 			System.out.println(arrLine);
-			
-			
-		
 
-	
-
-			
-			
-			
 			}
 		} catch (IOException e) {
 		
