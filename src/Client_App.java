@@ -24,6 +24,7 @@ public class Client_App {
     private int loginResult=2;
     private String firstCheck ="1";
     private JTextField textID = new JTextField(10);
+    ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/LoginBackground2.png").getImage());
 //    private HintTextFieldID textID = new HintTextFieldID(" ID");
 //    JPasswordField textPW = new JPasswordField(10);
 //    private HintTextFieldPW textPW = new HintTextFieldPW(" PW");
@@ -57,7 +58,7 @@ public class Client_App {
         frame.setBounds(100, 100, 1000, 706);
 		frame.getContentPane().setLayout(null);
 
-		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/LoginBackground2.png").getImage());
+
 
 //		JPanel profilePanel, tablePanel, homePanel;
 
@@ -871,6 +872,9 @@ public class Client_App {
 				homePanel.setVisible(false);
 				tablePanel.setVisible(false);
 				panel.setVisible(true);
+				frame.setSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
+				frame.setPreferredSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
+				frame.setLayout(null);
 //                frame.setBounds(100, 100, 1000, 706);
 			}
 		});
