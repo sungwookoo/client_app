@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Arrays;
+import java.util.Arrays; 
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
