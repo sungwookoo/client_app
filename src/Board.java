@@ -24,8 +24,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
-
 public class Board extends JFrame {
 	//Board Main 화면
 	private static JPanel boardPane;
