@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -224,37 +225,51 @@ public class Client_App {
         tablePanel.setBackground(Color.WHITE);
 
 //        tablePanel.setLayout(new FlowLayout());
-        tablePanel.setBounds(0,0,958,551);
+        tablePanel.setBounds(0,0,958,800);
         String[][] data = customer.getCustomers();
 //        String[] headers = new String[]{"ID","UserName","Password","Name","Phone","Gender","Age","Note"};
-        String[] headers = new String[]{"UserName","Password","Name","Phone","Gender","Age","Note"};
+        String[] headers = new String[]{"아이디","비밀번호","이름","연락처","성별","나이","기타사항"};
         JTable table = new JTable(data,headers);
 //        table.setModel(new DefaultTableModel(data,headers));
-        table.setBounds(0,300,800,400);
+//        table.setBounds(0,300,800,400);
         table.setRowHeight(30);
         table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         table.setAlignmentX(0);
-        
-        table.setModel(new DefaultTableModel(data, headers) {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		});
 
+        int[] columnsWidth = {
+        		70,70,70,120,70,70,150
+        };
+        int i=0;
+        for( int width : columnsWidth) {
+        	TableColumn column =table.getColumnModel().getColumn(i++);
+        	column.setMinWidth(width);
+        	column.setMaxWidth(width);
+        	column.setPreferredWidth(width);
+        }
+        tablePanel.setLayout(null);
+//        table.setModel(new DefaultTableModel(data, headers) {
+//			public boolean isCellEditable(int row, int column) {
+//				return false;
+//			}
+//		});
+//
+       
         table.getTableHeader().setReorderingAllowed(false);   //table 사이즈,내용 수정 불가
         table.getTableHeader().setResizingAllowed(false);
-        
+//        
         table.getTableHeader().setBackground(new Color(80, 188, 223));
         table.getTableHeader().setForeground(new Color(255,255,255));
         
-        table.setSize(800,400);
+//        table.setSize(800,400);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
-        table.setPreferredScrollableViewportSize(new Dimension(800,400));
+        table.setPreferredScrollableViewportSize(new Dimension(600,400));
         //JScrollPane < 스크롤이가능한 컴포넌트로 추가한다.
-        tablePanel.add(new JScrollPane(table));
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(130, 25, 623, 400);
+        tablePanel.add(scrollPane);
         // ************************************* create 패널 ******************************************
         RoundedButton createBtn = new RoundedButton("생성");
-        createBtn.setBounds(500,600,150,40);
+        createBtn.setBounds(550,443,61,27);
         createBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -354,13 +369,15 @@ public class Client_App {
 							
 							//실행시 바로 테이블이 실시간으로 보이게끔
 							table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
-
-			                TableColumnModel columnModels = table.getColumnModel();
-			                columnModels.getColumn(0).setPreferredWidth(10);
-			                columnModels.getColumn(1).setPreferredWidth(100);
-			                columnModels.getColumn(3).setPreferredWidth(50);
-			                columnModels.getColumn(4).setPreferredWidth(10);
-
+							
+			                int i=0;
+			                for( int width : columnsWidth) {
+			                	TableColumn column =table.getColumnModel().getColumn(i++);
+			                	column.setMinWidth(width);
+			                	column.setMaxWidth(width);
+			                	column.setPreferredWidth(width);
+			                }
+			                
 			                tablePanel.repaint();
 			                frame.repaint();
 			                frame.validate();
@@ -386,8 +403,8 @@ public class Client_App {
         
         
         // ************************************* update 패널 ******************************************
-        RoundedButton updateBtn = new RoundedButton("정보 수정");
-        updateBtn.setBounds(500,700,150,40);
+        RoundedButton updateBtn = new RoundedButton("수정");
+        updateBtn.setBounds(620,443,61,27);
         updateBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         updateBtn.addActionListener(new ActionListener() {
 
@@ -500,19 +517,23 @@ public class Client_App {
                         if(flag==true){
                             table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
-                            TableColumnModel columnModels = table.getColumnModel();
-                            columnModels.getColumn(0).setPreferredWidth(10);
-                            columnModels.getColumn(1).setPreferredWidth(100);
-                            columnModels.getColumn(3).setPreferredWidth(50);
-                            columnModels.getColumn(4).setPreferredWidth(10);
-
+                           
+                            
+                            int i=0;
+			                for( int width : columnsWidth) {
+			                	TableColumn column =table.getColumnModel().getColumn(i++);
+			                	column.setMinWidth(width);
+			                	column.setMaxWidth(width);
+			                	column.setPreferredWidth(width);
+			                }
+			                
                             tablePanel.repaint();
                             frame.repaint();
                             frame.validate();
 
                             updatePanel.setVisible(false);
                             tablePanel.setVisible(true);
-                            frame.setBounds(100,100,958,521);
+                            frame.setBounds(100,100,958,551);
 
                         }
                         else{
@@ -531,7 +552,7 @@ public class Client_App {
         });
         //*************************************************************************************************
         RoundedButton deleteBtn = new RoundedButton("삭제");
-        deleteBtn.setBounds(500,400,150,40);
+        deleteBtn.setBounds(690,443,61,27);
         deleteBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         deleteBtn.addActionListener(new ActionListener() {
             @Override
@@ -543,11 +564,15 @@ public class Client_App {
                 
                 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
-                TableColumnModel columnModels = table.getColumnModel();
-                columnModels.getColumn(0).setPreferredWidth(10);
-                columnModels.getColumn(1).setPreferredWidth(100);
-                columnModels.getColumn(3).setPreferredWidth(50);
-                columnModels.getColumn(4).setPreferredWidth(10);
+
+                int i=0;
+                for( int width : columnsWidth) {
+                	TableColumn column =table.getColumnModel().getColumn(i++);
+                	column.setMinWidth(width);
+                	column.setMaxWidth(width);
+                	column.setPreferredWidth(width);
+                }
+
 
                 tablePanel.repaint();
                 frame.repaint();
@@ -562,7 +587,7 @@ public class Client_App {
         //테이블 필터만들기 JTextField search 적는순간 적은부분있는것만남게
         JTextField search = new JTextField();
         search.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,17));
-        search.setBounds(76,13,1202,36);
+        search.setBounds(330,443,200,27);
         tablePanel.add(search);
         search.setColumns(10);
         search.addKeyListener(new KeyAdapter() {
@@ -576,10 +601,10 @@ public class Client_App {
         });
         // 0번열 (name) 은 setPreferredWidth(100)은 100보다 사이즈가 더 커질경우 자동으로 테이블의 크기를 조절
         TableColumnModel columnModels = table.getColumnModel();
-        columnModels.getColumn(0).setPreferredWidth(10);
-        columnModels.getColumn(1).setPreferredWidth(100);
-        columnModels.getColumn(3).setPreferredWidth(50);
-        columnModels.getColumn(4).setPreferredWidth(10);
+//        columnModels.getColumn(0).setPreferredWidth(10);
+//        columnModels.getColumn(1).setPreferredWidth(100);
+//        columnModels.getColumn(3).setPreferredWidth(50);
+//        columnModels.getColumn(4).setPreferredWidth(10);
         tablePanel.setVisible(false);
 //        ===============================================================================================================
         
@@ -606,10 +631,10 @@ public class Client_App {
 					 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
 		                TableColumnModel columnModels = table.getColumnModel();
-		                columnModels.getColumn(0).setPreferredWidth(10);
-		                columnModels.getColumn(1).setPreferredWidth(100);
-		                columnModels.getColumn(3).setPreferredWidth(50);
-		                columnModels.getColumn(4).setPreferredWidth(10);
+//		                columnModels.getColumn(0).setPreferredWidth(10);
+//		                columnModels.getColumn(1).setPreferredWidth(100);
+//		                columnModels.getColumn(3).setPreferredWidth(50);
+//		                columnModels.getColumn(4).setPreferredWidth(10);
 
 		                tablePanel.repaint();
 		                frame.repaint();

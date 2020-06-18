@@ -104,8 +104,6 @@ public class BoardDetail extends JFrame {
 					JOptionPane.showMessageDialog(null,"삭제기능은 작성자만 할수있습니다!!");
 					
 				}
-				
-				
 				setVisible(false);
 			}
 		});
