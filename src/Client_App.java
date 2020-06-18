@@ -1,32 +1,31 @@
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
-
 public class Client_App {
     public static JFrame frame;
+
     private JPanel profilePanel;
     private JPanel tablePanel;
     private JPanel homePanel;
+    private JPanel updatePanel = new JPanel();
+    private JPanel createPanel = new JPanel();
+    private ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/LoginBackground2.png").getImage());
+
     static String current_id = "";
-    static String userName;
-    private int loginResult=2;
-    private String firstCheck ="1";
+    static String userName = "";
+    private int loginResult = 2;
+    private String firstCheck = "1";
     private JTextField textID = new JTextField(10);
-//    private HintTextFieldID textID = new HintTextFieldID(" ID");
-//    JPasswordField textPW = new JPasswordField(10);
-//    private HintTextFieldPW textPW = new HintTextFieldPW(" PW");
+
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -41,6 +40,7 @@ public class Client_App {
             }
         });
     }
+
     public Client_App(){
         TrayIconApp trayIconApp = new TrayIconApp();
         initialize();
@@ -56,10 +56,6 @@ public class Client_App {
         frame = new JFrame();
         frame.setBounds(100, 100, 1000, 706);
 		frame.getContentPane().setLayout(null);
-
-		ImagePanel welcomePanel = new ImagePanel(new ImageIcon("./img/LoginBackground2.png").getImage());
-
-//		JPanel profilePanel, tablePanel, homePanel;
 
         //로그인화면(첫화면) panel
 
@@ -223,28 +219,56 @@ public class Client_App {
         tablePanel.setBackground(Color.WHITE);
 
 //        tablePanel.setLayout(new FlowLayout());
-        tablePanel.setBounds(0,0,958,551);
+        tablePanel.setBounds(0,0,958,800);
         String[][] data = customer.getCustomers();
-        String[] headers = new String[]{"ID","UserName","Password","Name","Phone","Gender","Age","Note"};
+//        String[] headers = new String[]{"ID","UserName","Password","Name","Phone","Gender","Age","Note"};
+        String[] headers = new String[]{"아이디","비밀번호","이름","연락처","성별","나이","기타사항"};
         JTable table = new JTable(data,headers);
 //        table.setModel(new DefaultTableModel(data,headers));
-        table.setBounds(0,300,800,400);
+//        table.setBounds(0,300,800,400);
         table.setRowHeight(30);
         table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         table.setAlignmentX(0);
-        table.setSize(800,400);
+
+        int[] columnsWidth = {
+        		70,70,70,120,70,70,150
+        };
+        int i=0;
+        for( int width : columnsWidth) {
+        	TableColumn column =table.getColumnModel().getColumn(i++);
+        	column.setMinWidth(width);
+        	column.setMaxWidth(width);
+        	column.setPreferredWidth(width);
+        }
+        tablePanel.setLayout(null);
+//        table.setModel(new DefaultTableModel(data, headers) {
+//			public boolean isCellEditable(int row, int column) {
+//				return false;
+//			}
+//		});
+//
+       
+        table.getTableHeader().setReorderingAllowed(false);   //table 사이즈,내용 수정 불가
+        table.getTableHeader().setResizingAllowed(false);
+//        
+        table.getTableHeader().setBackground(new Color(80, 188, 223));
+        table.getTableHeader().setForeground(new Color(255,255,255));
+        
+//        table.setSize(800,400);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
-        table.setPreferredScrollableViewportSize(new Dimension(800,400));
+        table.setPreferredScrollableViewportSize(new Dimension(600,400));
         //JScrollPane < 스크롤이가능한 컴포넌트로 추가한다.
-        tablePanel.add(new JScrollPane(table));
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(130, 25, 623, 400);
+        tablePanel.add(scrollPane);
         // ************************************* create 패널 ******************************************
         RoundedButton createBtn = new RoundedButton("생성");
-        createBtn.setBounds(500,600,150,40);
+        createBtn.setBounds(550,443,61,27);
         createBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JPanel createPanel = new JPanel();
+
 				frame.setBounds(100,100,528,482);
                 createPanel.setBounds(0,0,welcomePanel.getWidth(),welcomePanel.getHeight());
                 createPanel.setBackground(Color.WHITE);
@@ -289,9 +313,7 @@ public class Client_App {
         					
         			}
         		});
-                
-                
-                
+
                 createPanel.add(username);
                 createPanel.add(textUserName);
                 //관리자가 처음 만들어줄 password
@@ -301,12 +323,7 @@ public class Client_App {
                 
                 JPasswordField textPassword = new JPasswordField(15);
                 textPassword.setBounds(220,250,140,40);
-                
-                
-                
-                
-                
-                
+
                 createPanel.add(password);
                 createPanel.add(textPassword);
                 //취소버튼
@@ -333,11 +350,6 @@ public class Client_App {
 					public void actionPerformed(ActionEvent e) {
 						String Username = textUserName.getText();
 						String password="";
-//						String name="";
-//						String phone="";
-//						String gender="";
-//						String age="";
-//						String note="";
 						char[] secret_pw = textPassword.getPassword();
 						for (char cha : secret_pw) {
 								Character.toString(cha);  //cha에 저장된 값 String으로 변환
@@ -351,13 +363,15 @@ public class Client_App {
 							
 							//실행시 바로 테이블이 실시간으로 보이게끔
 							table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
-
-			                TableColumnModel columnModels = table.getColumnModel();
-			                columnModels.getColumn(0).setPreferredWidth(10);
-			                columnModels.getColumn(1).setPreferredWidth(100);
-			                columnModels.getColumn(3).setPreferredWidth(50);
-			                columnModels.getColumn(4).setPreferredWidth(10);
-
+							
+			                int i=0;
+			                for( int width : columnsWidth) {
+			                	TableColumn column =table.getColumnModel().getColumn(i++);
+			                	column.setMinWidth(width);
+			                	column.setMaxWidth(width);
+			                	column.setPreferredWidth(width);
+			                }
+			                
 			                tablePanel.repaint();
 			                frame.repaint();
 			                frame.validate();
@@ -383,8 +397,8 @@ public class Client_App {
         
         
         // ************************************* update 패널 ******************************************
-        RoundedButton updateBtn = new RoundedButton("정보 수정");
-        updateBtn.setBounds(500,700,150,40);
+        RoundedButton updateBtn = new RoundedButton("수정");
+        updateBtn.setBounds(620,443,61,27);
         updateBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         updateBtn.addActionListener(new ActionListener() {
 
@@ -393,15 +407,15 @@ public class Client_App {
 
                 frame.setBounds(100,100,958,721);
                 int row1=table.getSelectedRow();
-                Object id= table.getValueAt(row1, 0);
-                Object userName= table.getValueAt(row1, 1);
-                Object Name =table.getValueAt(row1, 3);
-                Object Phone =table.getValueAt(row1, 4);
-                Object Gender =table.getValueAt(row1, 5);
-                Object Age =table.getValueAt(row1, 6);
-                Object Note =table.getValueAt(row1, 7);
+//                Object id= table.getValueAt(row1, 0);
+                Object userName= table.getValueAt(row1, 0);
+                Object Name =table.getValueAt(row1, 2);
+                Object Phone =table.getValueAt(row1, 3);
+                Object Gender =table.getValueAt(row1, 4);
+                Object Age =table.getValueAt(row1, 5);
+                Object Note =table.getValueAt(row1, 6);
 
-                JPanel updatePanel = new JPanel();
+
                 updatePanel.setBounds(0,0,958,751);
                 updatePanel.setBackground(Color.WHITE);
                 updatePanel.setLayout(null);
@@ -496,19 +510,23 @@ public class Client_App {
                         if(flag==true){
                             table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
-                            TableColumnModel columnModels = table.getColumnModel();
-                            columnModels.getColumn(0).setPreferredWidth(10);
-                            columnModels.getColumn(1).setPreferredWidth(100);
-                            columnModels.getColumn(3).setPreferredWidth(50);
-                            columnModels.getColumn(4).setPreferredWidth(10);
-
+                           
+                            
+                            int i=0;
+			                for( int width : columnsWidth) {
+			                	TableColumn column =table.getColumnModel().getColumn(i++);
+			                	column.setMinWidth(width);
+			                	column.setMaxWidth(width);
+			                	column.setPreferredWidth(width);
+			                }
+			                
                             tablePanel.repaint();
                             frame.repaint();
                             frame.validate();
 
                             updatePanel.setVisible(false);
                             tablePanel.setVisible(true);
-                            frame.setBounds(100,100,958,521);
+                            frame.setBounds(100,100,958,551);
 
                         }
                         else{
@@ -527,23 +545,27 @@ public class Client_App {
         });
         //*************************************************************************************************
         RoundedButton deleteBtn = new RoundedButton("삭제");
-        deleteBtn.setBounds(500,400,150,40);
+        deleteBtn.setBounds(690,443,61,27);
         deleteBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         deleteBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row1= table.getSelectedRow();
-                Object deleteId=table.getValueAt(row1,0);
-                Object deleteUsername=table.getValueAt(row1,1);
-                customer.deleteCustomer(deleteId,deleteUsername);
+//                Object deleteId=table.getValueAt(row1,0);
+                Object deleteUsername=table.getValueAt(row1,0);
+                customer.deleteCustomer(deleteUsername);
                 
                 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
-                TableColumnModel columnModels = table.getColumnModel();
-                columnModels.getColumn(0).setPreferredWidth(10);
-                columnModels.getColumn(1).setPreferredWidth(100);
-                columnModels.getColumn(3).setPreferredWidth(50);
-                columnModels.getColumn(4).setPreferredWidth(10);
+
+                int i=0;
+                for( int width : columnsWidth) {
+                	TableColumn column =table.getColumnModel().getColumn(i++);
+                	column.setMinWidth(width);
+                	column.setMaxWidth(width);
+                	column.setPreferredWidth(width);
+                }
+
 
                 tablePanel.repaint();
                 frame.repaint();
@@ -558,7 +580,7 @@ public class Client_App {
         //테이블 필터만들기 JTextField search 적는순간 적은부분있는것만남게
         JTextField search = new JTextField();
         search.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,17));
-        search.setBounds(76,13,1202,36);
+        search.setBounds(330,443,200,27);
         tablePanel.add(search);
         search.setColumns(10);
         search.addKeyListener(new KeyAdapter() {
@@ -572,10 +594,10 @@ public class Client_App {
         });
         // 0번열 (name) 은 setPreferredWidth(100)은 100보다 사이즈가 더 커질경우 자동으로 테이블의 크기를 조절
         TableColumnModel columnModels = table.getColumnModel();
-        columnModels.getColumn(0).setPreferredWidth(10);
-        columnModels.getColumn(1).setPreferredWidth(100);
-        columnModels.getColumn(3).setPreferredWidth(50);
-        columnModels.getColumn(4).setPreferredWidth(10);
+//        columnModels.getColumn(0).setPreferredWidth(10);
+//        columnModels.getColumn(1).setPreferredWidth(100);
+//        columnModels.getColumn(3).setPreferredWidth(50);
+//        columnModels.getColumn(4).setPreferredWidth(10);
         tablePanel.setVisible(false);
 //        ===============================================================================================================
         
@@ -601,10 +623,10 @@ public class Client_App {
 					 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
 		                TableColumnModel columnModels = table.getColumnModel();
-		                columnModels.getColumn(0).setPreferredWidth(10);
-		                columnModels.getColumn(1).setPreferredWidth(100);
-		                columnModels.getColumn(3).setPreferredWidth(50);
-		                columnModels.getColumn(4).setPreferredWidth(10);
+//		                columnModels.getColumn(0).setPreferredWidth(10);
+//		                columnModels.getColumn(1).setPreferredWidth(100);
+//		                columnModels.getColumn(3).setPreferredWidth(50);
+//		                columnModels.getColumn(4).setPreferredWidth(10);
 
 		                tablePanel.repaint();
 		                frame.repaint();
@@ -615,35 +637,11 @@ public class Client_App {
 			}
 		});
         profilePanel.add(submitBtn);
-/*
-        // submit(제출)버튼 생성 및 action
-        JButton submitBtn = new JButton("Submit");
-        submitBtn.setBounds(500,520,75,40);
-        submitBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String nameText = textName.getText();
-                String ageText = textAge.getText();
-                String phoneText = textPhone.getText();
-                String genderText = comboBoxGender.getSelectedItem().toString();
-                String noteText = textNote.getText();
-                Boolean flag = customer.createCustomer(nameText,phoneText,genderText,ageText,noteText);
-                if(flag==true){
-                    profilePanel.setVisible(false);
-                    homePanel.setVisible(true);
-                }
-                else{
-                }
-            }
-        });
-        
-        profilePanel.add(submitBtn);
-*/
         frame.getContentPane().add(profilePanel);
 
 
       
-        //************************************* LOGIN 화면 ******************************************
+        //************************************* LOGIN 로그인 화면 ******************************************
 
         //로그인화면 ID label
         //로그인화면 PW label
@@ -653,7 +651,7 @@ public class Client_App {
         id.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,15));
         id.setBounds(93,190,85,40);
 
-        textID.setFont(new Font("휴먼고딕", Font.PLAIN, 18));
+        textID.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 18));
 //        textID.setBounds(87,280,300,47);
         textID.setBounds(88,225,315,47);
         
@@ -689,7 +687,7 @@ public class Client_App {
         pw.setBounds(93,285,85,40);
         
         JPasswordField textPW = new JPasswordField(10);
-        textPW.setFont(new Font("굴림", Font.PLAIN, 18));
+        textPW.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 18));
 //        textPW.setBounds(140,300,220,35);
         textPW.setBounds(88,320,315,47);
 
@@ -733,12 +731,7 @@ public class Client_App {
 
 
         //로그인화면 Login Button
-        
-//        JButton logBtn =  new JButton("LogIn");
-//        logBtn.setIcon(new ImageIcon("./img/loginbtn.png"));
-//        logBtn.setPressedIcon(new ImageIcon("./img/loginbtn_click.png"));
-//        logBtn.setBounds(500,420,170,45);
-        
+
         RoundedButton logBtn = new RoundedButton("LogIn");
         logBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         logBtn.setBounds(153, 400, 185, 50);
@@ -747,14 +740,6 @@ public class Client_App {
 
         	@Override
         	public void actionPerformed(ActionEvent e) {
-
-        /*		//관리자로 접근
-        		if(textID.getText().equals("admin")&&Arrays.equals(textPW.getPassword(),"admin".toCharArray())){
-                    current_id = "admin";
-                    System.out.println("administrator");
-                    welcomePanel.setVisible(false);
-                    tablePanel.setVisible(true);
-                }*/
 
         		//유저 ID PW로 로그인 방법
         		String userName = textID.getText();
@@ -795,7 +780,6 @@ public class Client_App {
         		}
         	}
 
-
         });
 
         welcomePanel.add(id);
@@ -810,12 +794,9 @@ public class Client_App {
         frame.setLocationRelativeTo(null);
 //        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-    
-    
-      
-      
+
     //************************************* 상단 메뉴바 ******************************************
-    	public JMenuBar menuBar(JPanel panel) {
+    	public JMenuBar menuBar(ImagePanel panel) {
     	
     	
         JMenuBar bar = new JMenuBar();
@@ -826,8 +807,7 @@ public class Client_App {
         
         bar.add(fileMenu);
         bar.add(aboutMenu);
-    
-        
+
         JMenuItem openFile = new JMenuItem("Open");
         openFile.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         JMenuItem exit = new JMenuItem("Exit"); 
@@ -855,14 +835,18 @@ public class Client_App {
 				profilePanel.setVisible(false);
 				homePanel.setVisible(false);
 				tablePanel.setVisible(false);
+                updatePanel.setVisible(false);
+                createPanel.setVisible(false);
 				panel.setVisible(true);
-				frame.setBounds(100,100,528,482);
+				frame.setSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
+				frame.setPreferredSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
+				frame.getContentPane().setLayout(null);
+//                frame.setBounds(100, 100, 1000, 706);
 			}
 		});
 
         return bar;
     }
-
 
 }
 

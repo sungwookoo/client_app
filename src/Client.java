@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import java.awt.Font;
 
-//채팅클라이언트
+//채팅클라이언트  
 public class Client extends JFrame implements ActionListener, KeyListener {
 
     private JPanel contentPane;
@@ -28,7 +28,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     private JList User_list = new JList(); // 전체 접속자 list
     private JList Room_list = new JList(); // 전체 방목록 list
     private JTextArea Chat_area = new JTextArea(); // 채팅창 변수
-
+    
     //네트워크를 위한 자원변수
     private Socket socket;
     private String ip = "127.0.0.1"; //"127.0.0.1" 는 자기자신
@@ -78,9 +78,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
 
             }
         });
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setBounds(100,100,516,450);
-//        setBounds(100, 100, 520, 470);
+
         setBounds(100, 100, 570, 628);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5,5,5,5));

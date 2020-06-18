@@ -52,6 +52,7 @@ public class Board_list {
 		}
 	}
 	
+	
 	 public static void deleteBoardTable() {
 	       try {
 	          Connection con = getConnection();
@@ -80,14 +81,14 @@ public class Board_list {
 			 insert.executeUpdate();
 		 }catch(Exception e ) {
 			 System.out.println(e.getMessage());
+		 }finally {
+			 System.out.println("데이터가 들어감?");
 		 }
 	 }
 	
 	public static Connection getConnection() {
 		 try{
 	            String driver = "com.mysql.cj.jdbc.Driver";
-//	            String url = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12332275";
-//	            String user = "sql12332275";
 	            String url = "jdbc:mysql://localhost:3306/client_app?serverTimezone=UTC";
 	            String user = "root";
 	            String pass = "1234qwer";

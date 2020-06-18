@@ -8,20 +8,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+
+import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
 
 public class Board extends JFrame {
 	//Board Main 화면
@@ -40,50 +43,34 @@ public class Board extends JFrame {
 		Board_list board_list = new Board_list();
 //		board_list.deleteBoardTable();
 //		board_list.createBoardTable();
-		
-		
 		setBounds(300,100,705,566);
 		setTitle("게시판");
 		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
 		
 		boardPane = new JPanel();
 		boardPane.setBackground(Color.WHITE);
-		
-//		boardPane.setBorder(new EmptyBorder(5,5,5,5));
-		
+
 		setContentPane(boardPane);
-		
-//		boardPane.setLayout(null);
-		
-//		JLabel searchLabel = new JLabel("검색조건");
-//		searchLabel.setBounds(70,10,86,15);
-//		boardPane.add(searchLabel);
-//		
-//		JComboBox comboBox = new JComboBox();
-//		
-//		comboBox.setModel(new DefaultComboBoxModel(new String[] {"title", "content","writer"}));
-//		comboBox.setBounds(130,10,74,21);
-//		boardPane.add(comboBox);
-//		
-		
-		
-		
-		
-		
+
 		String[][] data = Board_list.getBoards();
-		String[] colNames = new String[] {"글번호","제목","작성자","조회수","작성일"};
+		String[] colNames = new String[] {"번호","제목","작성자","조회수","작성일"};
 		JTable boardTable = new JTable(data,colNames);
 		
-		boardTable.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+		boardTable.setFont(new Font("나눔스퀘어라운드 Regular", Font.BOLD, 17));
         boardTable.setAlignmentX(0);
-        boardTable.setSize(400,200);
-        
+        boardTable.setSize(400,200);        
         
         boardTable.setModel(new DefaultTableModel(data,colNames) {
-        	public boolean isCellEditable(int row, int column) {
+        	public boolean isCekkEditable(int row, int column) {
         		return false;
         	}
         });
+        
+        boardTable.getColumnModel().getColumn(0).setPreferredWidth(56);
+        boardTable.getColumnModel().getColumn(1).setPreferredWidth(131);
+        boardTable.getColumnModel().getColumn(2).setPreferredWidth(61);
+        boardTable.getColumnModel().getColumn(3).setPreferredWidth(42);
+        boardTable.getColumnModel().getColumn(4).setPreferredWidth(122);
         
         boardTable.getTableHeader().setReorderingAllowed(false);
         boardTable.getTableHeader().setResizingAllowed(false);
@@ -124,13 +111,14 @@ public class Board extends JFrame {
         	}
 		});
         JScrollPane scrollPane = new JScrollPane(boardTable);
-        scrollPane.setBounds(40, 131, 600, 330);
+        scrollPane.setBounds(40, 120, 600, 340);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
-        scrollPane.setPreferredSize(new Dimension(600,330));
+        scrollPane.setPreferredSize(new Dimension(600,350));
         boardPane.setLayout(null);
         
         searchText=new JTextField();
-		searchText.setBounds(260,473,153,24);
+        searchText.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 15));
+		searchText.setBounds(248,473,174,24);
 		boardPane.add(searchText);
 		searchText.setColumns(10);
 		
@@ -171,21 +159,17 @@ public class Board extends JFrame {
 		lblNewLabel.setBounds(-2, 3, 97, 91);
 		boardPane.add(lblNewLabel);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"제목","작성자"}));
+		comboBox.setFont(new Font("나눔스퀘어라운드 Regular", Font.PLAIN, 15));
+		comboBox.setBounds(159, 473, 75, 24);
+		boardPane.add(comboBox);
+		
+		RoundedButton searchButton = new RoundedButton("검색");
+		searchButton.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 13));
+		searchButton.setBounds(436, 471, 85, 27);
+		boardPane.add(searchButton);
+		
 		this.setVisible(true);
 	}
-	
-//	
-//	private static void refresh(JTable boardTable, Board_list board_list,String[] colNames) {
-//		boardTable.setModel(new DefaultTableModel(board_list.getBoards(),colNames));
-//
-//        TableColumnModel columnModels = boardTable.getColumnModel();
-//        columnModels.getColumn(0).setPreferredWidth(10);
-//        columnModels.getColumn(1).setPreferredWidth(100);
-//        columnModels.getColumn(3).setPreferredWidth(50);
-//        columnModels.getColumn(4).setPreferredWidth(10);
-//
-//        boardPane.repaint();
-//        repaint();
-//        validate();
-//	}
 }
