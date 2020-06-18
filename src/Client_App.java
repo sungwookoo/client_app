@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
-public class Client_App {
+public class Client_App { 
     public static JFrame frame;
 
     private JPanel profilePanel;
