@@ -24,6 +24,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.sun.corba.se.impl.protocol.BootstrapServerRequestDispatcher;
+
 public class Board extends JFrame {
 	//Board Main 화면
 	private static JPanel boardPane;
@@ -39,7 +41,8 @@ public class Board extends JFrame {
 	    
 	private void initialize() {
 		Board_list board_list = new Board_list();
-
+//		board_list.deleteBoardTable();
+//		board_list.createBoardTable();
 		setBounds(300,100,705,566);
 		setTitle("게시판");
 		setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
@@ -53,31 +56,16 @@ public class Board extends JFrame {
 		String[] colNames = new String[] {"번호","제목","작성자","조회수","작성일"};
 		JTable boardTable = new JTable(data,colNames);
 		
-		boardTable.setFont(new Font("나눔바른고딕 Light", Font.BOLD, 17));
+		boardTable.setFont(new Font("나눔스퀘어라운드 Regular", Font.BOLD, 17));
         boardTable.setAlignmentX(0);
-        boardTable.setSize(400,200);
+        boardTable.setSize(400,200);        
         
-        
-        boardTable.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{"2", "\uD14C\uC2A4\uD2B81", "A", "35", "2020-05-08 01:14:15"},
-        		{"3", "\uAE00", "A", "15", "2020-05-08 03:36:32"},
-        		{"5", "\uC544\uD504\uB2E4", "A", "10", "2020-05-25 21:39:28"},
-        		{"6", "\uC548\uB155", "A", "3", "2020-05-26 04:17:37"},
-        		{"7", "\uAE00\uC81C\uBAA9\uC785\uB2C8\uB2E4.", "A", "3", "2020-05-26 04:19:15"},
-        		{"13", "\uC81C\uBAA9\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694.", "A", "1", "2020-05-28 23:32:57"},
-        		{"14", "\uC548\uB155\uD558\uC138\uC694", "a", "5", "2020-05-29 00:43:35"},
-        		{"17", "\uD14C\uC2A4\uD2B835", "a", "1", "2020-05-29 12:39:21"},
-        		{"18", "\uD14C\uC2A4\uD2B8 455", "a", "2", "2020-05-29 12:39:47"},
-        		{"19", "\uC548\uB155\uD558\uC138\uC694", "mnb", "2", "2020-05-29 12:48:45"},
-        		{"20", "\uC548\uB155\uD558\uC138\uC694 \uAE40\uC7A5\uBE44\uC785\uB2C8\uB2E4.", "Ace", "5", "2020-05-29 13:31:29"},
-        		{"21", "\u314E\u3147\uC694", "Ace", "2", "2020-05-29 13:45:52"},
-        		{"22", "", "A", "0", "2020-06-15 19:48:25"},
-        	},
-        	new String[] {
-        		"\uBC88\uD638", "\uC81C\uBAA9", "\uC791\uC131\uC790", "\uC870\uD68C\uC218", "\uC791\uC131\uC77C"
+        boardTable.setModel(new DefaultTableModel(data,colNames) {
+        	public boolean isCekkEditable(int row, int column) {
+        		return false;
         	}
-        ));
+        });
+        
         boardTable.getColumnModel().getColumn(0).setPreferredWidth(56);
         boardTable.getColumnModel().getColumn(1).setPreferredWidth(131);
         boardTable.getColumnModel().getColumn(2).setPreferredWidth(61);
@@ -123,9 +111,9 @@ public class Board extends JFrame {
         	}
 		});
         JScrollPane scrollPane = new JScrollPane(boardTable);
-        scrollPane.setBounds(40, 131, 600, 330);
+        scrollPane.setBounds(40, 120, 600, 340);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
-        scrollPane.setPreferredSize(new Dimension(600,330));
+        scrollPane.setPreferredSize(new Dimension(600,350));
         boardPane.setLayout(null);
         
         searchText=new JTextField();
@@ -173,7 +161,7 @@ public class Board extends JFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"제목","작성자"}));
-		comboBox.setFont(new Font("나눔바른고딕 Light", Font.PLAIN, 15));
+		comboBox.setFont(new Font("나눔스퀘어라운드 Regular", Font.PLAIN, 15));
 		comboBox.setBounds(159, 473, 75, 24);
 		boardPane.add(comboBox);
 		

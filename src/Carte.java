@@ -71,6 +71,7 @@ public class Carte extends JFrame {
         table.getTableHeader().setForeground(new Color(255,255,255));
 		table.setRowHeight(30);
 		
+		
 		cartePane.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(77, 129, 550, 232);
