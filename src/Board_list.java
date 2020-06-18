@@ -52,6 +52,7 @@ public class Board_list {
 		}
 	}
 	
+	
 	 public static void deleteBoardTable() {
 	       try {
 	          Connection con = getConnection();
@@ -80,6 +81,8 @@ public class Board_list {
 			 insert.executeUpdate();
 		 }catch(Exception e ) {
 			 System.out.println(e.getMessage());
+		 }finally {
+			 System.out.println("데이터가 들어감?");
 		 }
 	 }
 	

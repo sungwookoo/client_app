@@ -28,7 +28,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     private JList User_list = new JList(); // 전체 접속자 list
     private JList Room_list = new JList(); // 전체 방목록 list
     private JTextArea Chat_area = new JTextArea(); // 채팅창 변수
-
+    
     //네트워크를 위한 자원변수
     private Socket socket;
     private String ip = "127.0.0.1"; //"127.0.0.1" 는 자기자신

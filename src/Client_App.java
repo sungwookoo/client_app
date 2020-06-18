@@ -1,15 +1,21 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Arrays; 
 import java.util.Arrays;
+
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 
-public class Client_App {
+public class Client_App { 
     public static JFrame frame;
 
     private JPanel profilePanel;
@@ -78,66 +84,67 @@ public class Client_App {
 
         //메인패널 상단 label
         JLabel welcomeMain = new JLabel("Job time");
-        welcomeMain.setBounds(340,25,300,40);
+        welcomeMain.setBounds(340,30,300,40);
         welcomeMain.setFont(new Font("Vivaldi",Font.BOLD ,35 ));
         profilePanel.add(welcomeMain);
 
         JLabel name = new JLabel("이름");
-        name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        name.setBounds(250,120,85,40);
+        name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+        name.setBounds(230,120,85,40);
+        
         JTextField textName = new JTextField(10);
         textName.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
-        textName.setBounds(320,120,140,40);
+        textName.setBounds(320,120,240,40);
         profilePanel.add(name);
         profilePanel.add(textName);
 
         JLabel phone = new JLabel("휴대폰	");
-        phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        phone.setBounds(250,180,85,40);
+        phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+        phone.setBounds(230,180,85,40);
         
         JTextField textPhone = new JTextField(10);
-        textPhone.setBounds(320,180,140,40);
+        textPhone.setBounds(320,180,240,40);
         textPhone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(phone);
         profilePanel.add(textPhone);
 
         JLabel age = new JLabel("나이");
-        age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        age.setBounds(250,240,85,40);
+        age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+        age.setBounds(230,240,85,40);
         
         JTextField textAge = new JTextField(2);
-        textAge.setBounds(320,240,140,40);
+        textAge.setBounds(320,240,240,40);
         textAge.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(age);
         profilePanel.add(textAge);
 
         JLabel birthDay = new JLabel("생일");      //달력 추가?
-        birthDay.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        birthDay.setBounds(250,300,85,40);
+        birthDay.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+        birthDay.setBounds(230,300,85,40);
         
         JTextField textBirthDay = new JTextField(8);
-        textBirthDay.setBounds(320,300,140,40);
+        textBirthDay.setBounds(320,300,240,40);
         textBirthDay.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(birthDay);
         profilePanel.add(textBirthDay);
 
         JLabel gender = new JLabel("성별");
-        gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        gender.setBounds(250,360,85,40);
+        gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+        gender.setBounds(230,360,85,40);
         
         JComboBox comboBoxGender = new JComboBox(new String[]{"남자","여자"});
-        comboBoxGender.setBounds(320,360,140,40);
+        comboBoxGender.setBounds(320,360,240,40);
         comboBoxGender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         profilePanel.add(gender);
         profilePanel.add(comboBoxGender);
 
         JLabel note = new JLabel("기타사항");
-        note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-        note.setBounds(240,420,85,40);
+        note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+        note.setBounds(230,420,85,40);
         
         JTextArea textNote = new JTextArea();
-        textNote.setBounds(320,420,160,90);
-        textNote.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
+        textNote.setBounds(320,420,240,90);
+        textNote.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         textNote.setBorder(BorderFactory.createLineBorder(Color.black,1));
         profilePanel.add(note);
         profilePanel.add(textNote);
@@ -218,37 +225,51 @@ public class Client_App {
         tablePanel.setBackground(Color.WHITE);
 
 //        tablePanel.setLayout(new FlowLayout());
-        tablePanel.setBounds(0,0,958,551);
+        tablePanel.setBounds(0,0,958,800);
         String[][] data = customer.getCustomers();
 //        String[] headers = new String[]{"ID","UserName","Password","Name","Phone","Gender","Age","Note"};
-        String[] headers = new String[]{"UserName","Password","Name","Phone","Gender","Age","Note"};
+        String[] headers = new String[]{"아이디","비밀번호","이름","연락처","성별","나이","기타사항"};
         JTable table = new JTable(data,headers);
 //        table.setModel(new DefaultTableModel(data,headers));
-        table.setBounds(0,300,800,400);
+//        table.setBounds(0,300,800,400);
         table.setRowHeight(30);
         table.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
         table.setAlignmentX(0);
-        
-        table.setModel(new DefaultTableModel(data, headers) {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		});
 
+        int[] columnsWidth = {
+        		70,70,70,120,70,70,150
+        };
+        int i=0;
+        for( int width : columnsWidth) {
+        	TableColumn column =table.getColumnModel().getColumn(i++);
+        	column.setMinWidth(width);
+        	column.setMaxWidth(width);
+        	column.setPreferredWidth(width);
+        }
+        tablePanel.setLayout(null);
+//        table.setModel(new DefaultTableModel(data, headers) {
+//			public boolean isCellEditable(int row, int column) {
+//				return false;
+//			}
+//		});
+//
+       
         table.getTableHeader().setReorderingAllowed(false);   //table 사이즈,내용 수정 불가
         table.getTableHeader().setResizingAllowed(false);
-        
+//        
         table.getTableHeader().setBackground(new Color(80, 188, 223));
         table.getTableHeader().setForeground(new Color(255,255,255));
         
-        table.setSize(800,400);
+//        table.setSize(800,400);
         //사이즈를 정했지만 안정해지는경우도있으므로 setPreferredScrollableViewportSize 로 두번크기설정
-        table.setPreferredScrollableViewportSize(new Dimension(800,400));
+        table.setPreferredScrollableViewportSize(new Dimension(600,400));
         //JScrollPane < 스크롤이가능한 컴포넌트로 추가한다.
-        tablePanel.add(new JScrollPane(table));
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(130, 25, 623, 400);
+        tablePanel.add(scrollPane);
         // ************************************* create 패널 ******************************************
         RoundedButton createBtn = new RoundedButton("생성");
-        createBtn.setBounds(500,600,150,40);
+        createBtn.setBounds(550,443,61,27);
         createBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -348,13 +369,15 @@ public class Client_App {
 							
 							//실행시 바로 테이블이 실시간으로 보이게끔
 							table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
-
-			                TableColumnModel columnModels = table.getColumnModel();
-			                columnModels.getColumn(0).setPreferredWidth(10);
-			                columnModels.getColumn(1).setPreferredWidth(100);
-			                columnModels.getColumn(3).setPreferredWidth(50);
-			                columnModels.getColumn(4).setPreferredWidth(10);
-
+							
+			                int i=0;
+			                for( int width : columnsWidth) {
+			                	TableColumn column =table.getColumnModel().getColumn(i++);
+			                	column.setMinWidth(width);
+			                	column.setMaxWidth(width);
+			                	column.setPreferredWidth(width);
+			                }
+			                
 			                tablePanel.repaint();
 			                frame.repaint();
 			                frame.validate();
@@ -380,15 +403,16 @@ public class Client_App {
         
         
         // ************************************* update 패널 ******************************************
-        RoundedButton updateBtn = new RoundedButton("정보 수정");
-        updateBtn.setBounds(500,700,150,40);
+        RoundedButton updateBtn = new RoundedButton("수정");
+        updateBtn.setBounds(620,443,61,27);
         updateBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         updateBtn.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                frame.setBounds(100,100,958,721);
+//                frame.setBounds(100,100,958,721);
+                frame.setBounds(100,100,900,700);
                 int row1=table.getSelectedRow();
 //                Object id= table.getValueAt(row1, 0);
                 Object userName= table.getValueAt(row1, 0);
@@ -405,60 +429,60 @@ public class Client_App {
 
 
                 JLabel updateMain = new JLabel("정보 수정");
-                updateMain.setBounds(320,25,300,50);
+                updateMain.setBounds(340,25,300,50);
                 updateMain.setFont(new Font("나눔바른고딕 Extrabold",Font.BOLD,35));
                 updatePanel.add(updateMain);
 
                 JLabel name = new JLabel("이름");
-                name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                name.setBounds(265,120,85,40);
+                name.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+                name.setBounds(250,120,85,40);
 
                 JTextField textName = new JTextField(10);
-                textName.setBounds(320,120,140,40);
+                textName.setBounds(320,120,240,40);
                 textName.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 textName.setText((String) Name);
                 updatePanel.add(name);
                 updatePanel.add(textName);
 
                 JLabel phone = new JLabel("휴대전화");
-                phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                phone.setBounds(230,180,85,40);
+                phone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+                phone.setBounds(220,180,85,40);
 
                 JTextField textPhone = new JTextField("휴대전화",10);
-                textPhone.setBounds(320,180,140,40);
+                textPhone.setBounds(320,180,240,40);
                 textPhone.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 textPhone.setText((String)Phone);
                 updatePanel.add(phone);
                 updatePanel.add(textPhone);
 
                 JLabel age = new JLabel("나이");
-                age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                age.setBounds(265,240,85,40);
+                age.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+                age.setBounds(250,240,85,40);
 
                 JTextField textAge = new JTextField(2);
-                textAge.setBounds(320,240,140,40);
+                textAge.setBounds(320,240,240,40);
                 textAge.setText((String)Age);
                 textAge.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 updatePanel.add(age);
                 updatePanel.add(textAge);
 
                 JLabel gender = new JLabel("성별");
-                gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                gender.setBounds(265,300,85,40);
+                gender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+                gender.setBounds(250,300,85,40);
 
                 JComboBox comboBoxGender = new JComboBox(new String[]{"남자","여자"});
-                comboBoxGender.setBounds(320,300,140,40);
+                comboBoxGender.setBounds(320,300,240,40);
                 comboBoxGender.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 updatePanel.add(gender);
                 updatePanel.add(comboBoxGender);
 
                 JLabel note = new JLabel("기타사항");
-                note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,20));
-                note.setBounds(240,360,85,40);
+                note.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
+                note.setBounds(220,360,85,40);
 
                 JTextArea textNote = new JTextArea();
-                textNote.setBounds(320,360,160,120);
-                textNote.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
+                textNote.setBounds(320,360,240,120);
+                textNote.setFont(new Font("나눔바른고딕 Light",Font.BOLD,15));
                 textNote.setBorder(BorderFactory.createLineBorder(Color.black,1));
                 textNote.setText((String)Note);
                 updatePanel.add(note);
@@ -466,8 +490,8 @@ public class Client_App {
 
                 //취소버튼
                 RoundedButton cancelBtn = new RoundedButton("취소");
-                cancelBtn.setBounds(340,520,100,35);
-                cancelBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
+                cancelBtn.setBounds(330,520,100,35);
+                cancelBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
 
                 cancelBtn.addActionListener(new ActionListener() {
                     @Override
@@ -479,7 +503,7 @@ public class Client_App {
                 });
                 RoundedButton updateSubmitBtn = new RoundedButton("수정");
                 updateSubmitBtn.setBounds(450,520,100,35);
-                updateSubmitBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
+                updateSubmitBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,18));
                 updateSubmitBtn.addActionListener(new ActionListener() {
 
                     @Override
@@ -493,19 +517,23 @@ public class Client_App {
                         if(flag==true){
                             table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
-                            TableColumnModel columnModels = table.getColumnModel();
-                            columnModels.getColumn(0).setPreferredWidth(10);
-                            columnModels.getColumn(1).setPreferredWidth(100);
-                            columnModels.getColumn(3).setPreferredWidth(50);
-                            columnModels.getColumn(4).setPreferredWidth(10);
-
+                           
+                            
+                            int i=0;
+			                for( int width : columnsWidth) {
+			                	TableColumn column =table.getColumnModel().getColumn(i++);
+			                	column.setMinWidth(width);
+			                	column.setMaxWidth(width);
+			                	column.setPreferredWidth(width);
+			                }
+			                
                             tablePanel.repaint();
                             frame.repaint();
                             frame.validate();
 
                             updatePanel.setVisible(false);
                             tablePanel.setVisible(true);
-                            frame.setBounds(100,100,958,521);
+                            frame.setBounds(100,100,958,551);
 
                         }
                         else{
@@ -524,7 +552,7 @@ public class Client_App {
         });
         //*************************************************************************************************
         RoundedButton deleteBtn = new RoundedButton("삭제");
-        deleteBtn.setBounds(500,400,150,40);
+        deleteBtn.setBounds(690,443,61,27);
         deleteBtn.setFont(new Font("나눔바른고딕 Light",Font.BOLD,13));
         deleteBtn.addActionListener(new ActionListener() {
             @Override
@@ -536,11 +564,15 @@ public class Client_App {
                 
                 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
-                TableColumnModel columnModels = table.getColumnModel();
-                columnModels.getColumn(0).setPreferredWidth(10);
-                columnModels.getColumn(1).setPreferredWidth(100);
-                columnModels.getColumn(3).setPreferredWidth(50);
-                columnModels.getColumn(4).setPreferredWidth(10);
+
+                int i=0;
+                for( int width : columnsWidth) {
+                	TableColumn column =table.getColumnModel().getColumn(i++);
+                	column.setMinWidth(width);
+                	column.setMaxWidth(width);
+                	column.setPreferredWidth(width);
+                }
+
 
                 tablePanel.repaint();
                 frame.repaint();
@@ -555,7 +587,7 @@ public class Client_App {
         //테이블 필터만들기 JTextField search 적는순간 적은부분있는것만남게
         JTextField search = new JTextField();
         search.setFont(new Font("나눔바른고딕 Light",Font.PLAIN,17));
-        search.setBounds(76,13,1202,36);
+        search.setBounds(330,443,200,27);
         tablePanel.add(search);
         search.setColumns(10);
         search.addKeyListener(new KeyAdapter() {
@@ -569,16 +601,17 @@ public class Client_App {
         });
         // 0번열 (name) 은 setPreferredWidth(100)은 100보다 사이즈가 더 커질경우 자동으로 테이블의 크기를 조절
         TableColumnModel columnModels = table.getColumnModel();
-        columnModels.getColumn(0).setPreferredWidth(10);
-        columnModels.getColumn(1).setPreferredWidth(100);
-        columnModels.getColumn(3).setPreferredWidth(50);
-        columnModels.getColumn(4).setPreferredWidth(10);
+//        columnModels.getColumn(0).setPreferredWidth(10);
+//        columnModels.getColumn(1).setPreferredWidth(100);
+//        columnModels.getColumn(3).setPreferredWidth(50);
+//        columnModels.getColumn(4).setPreferredWidth(10);
         tablePanel.setVisible(false);
 //        ===============================================================================================================
         
         //submit(제출 ) 버튼 생성 및 action      
         RoundedButton submitBtn = new RoundedButton("등록");
-        submitBtn.setBounds(500,520,75,40);
+        submitBtn.setFont(new Font("나눔고딕", Font.BOLD, 18));
+        submitBtn.setBounds(340,540,195,45);
         submitBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -598,10 +631,10 @@ public class Client_App {
 					 table.setModel(new DefaultTableModel(customer.getCustomers(),headers));
 
 		                TableColumnModel columnModels = table.getColumnModel();
-		                columnModels.getColumn(0).setPreferredWidth(10);
-		                columnModels.getColumn(1).setPreferredWidth(100);
-		                columnModels.getColumn(3).setPreferredWidth(50);
-		                columnModels.getColumn(4).setPreferredWidth(10);
+//		                columnModels.getColumn(0).setPreferredWidth(10);
+//		                columnModels.getColumn(1).setPreferredWidth(100);
+//		                columnModels.getColumn(3).setPreferredWidth(50);
+//		                columnModels.getColumn(4).setPreferredWidth(10);
 
 		                tablePanel.repaint();
 		                frame.repaint();
@@ -732,7 +765,7 @@ public class Client_App {
         		if(loginResult ==0) { // 프로필 미등록자 로그인
         			welcomePanel.setVisible(false);
         			profilePanel.setVisible(true);
-                    frame.setBounds(100,100,958,721);
+        			frame.setBounds(100,100,900,700);
 //        			textID.setText("");
         			textPW.setText("");
         		}else if(loginResult ==1) { // 프로필 등록자 로그인
@@ -815,7 +848,7 @@ public class Client_App {
 				panel.setVisible(true);
 				frame.setSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
 				frame.setPreferredSize(new Dimension(welcomePanel.getWidth(),welcomePanel.getHeight()));
-				frame.setLayout(null);
+				frame.getContentPane().setLayout(null);
 //                frame.setBounds(100, 100, 1000, 706);
 			}
 		});
